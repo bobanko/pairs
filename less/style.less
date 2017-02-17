@@ -1,0 +1,125 @@
+html,
+body {
+  height: 100%;
+  background-color: lightgray;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .row {
+    display: flex;
+    flex-direction: row;
+    .cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1rem;
+      height: 1rem;
+      perspective: 450px;
+      margin: 0.05rem;
+    }
+  }
+}
+
+item {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s ease;
+  cursor: pointer;
+  &:before,
+  &:after {
+    content: '';
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    transition: all 500ms ease;
+    border-radius: 0.05rem;
+    box-shadow: 0 0 10px -2px black;
+    border: 0.1rem solid transparent;
+    box-sizing: border-box;
+    backface-visibility: hidden;
+  }
+  &:before {
+    transform: rotateY(-180deg);
+    background-color: black;
+  }
+  &:after {
+    background-color: #bbbbbb;
+    background-image: url(@cardBackImageUrl);
+  }
+  &.open {
+    //transform: scale(0.95);
+    &:before {
+      transform: rotateY(0deg);
+      background-color: #fff;
+    }
+    &:after {
+      transform: rotateY(180deg);
+      background-color: black;
+    }
+  }
+}
+
+html {
+  font-size: 100px;
+}
+
+
+/* MIXINS */
+
+.item-back(@imageUrl) {
+  &:before {
+    background-image: url(@imageUrl);
+  }
+}
+
+.item-face(@imageUrl) {
+  &:before {
+    background-image: url(@imageUrl);
+  }
+}
+
+@cardBackImageUrl: 'http://emojipedia-us.s3.amazonaws.com/cache/a0/94/a0948a70a8cf4ca9e611d7047c2fde13.png';
+.field item {
+  .item-back(@cardBackImageUrl);
+}
+
+@faceImgUrls: 'http://emojipedia-us.s3.amazonaws.com/cache/e1/0c/e10c30fde767f8e6b9778f29c7020daa.png',
+'http://emojipedia-us.s3.amazonaws.com/cache/ad/ce/adceea049986061e64d9ddda49e19ac3.png',
+'http://emojipedia-us.s3.amazonaws.com/cache/ed/ff/edff9778698ea291b3f8b696eaa312a7.png',
+'http://emojipedia-us.s3.amazonaws.com/cache/f3/ed/f3eddd01374ae11acc60554afb78a291.png',
+'http://emojipedia-us.s3.amazonaws.com/cache/f5/89/f5892f9fb88691bbfc0685284ee6d0a0.png',
+'http://emojipedia-us.s3.amazonaws.com/cache/80/ef/80ef858b870ff16fb3aad66955bd44ea.png',
+'http://emojipedia-us.s3.amazonaws.com/cache/0d/ac/0dac2944ab9ab6523ed53b750ba07d74.png',
+'http://emojipedia-us.s3.amazonaws.com/cache/af/7c/af7c07d3fc4b0d8b93de8c5573edd8a9.png',
+'http://emojipedia-us.s3.amazonaws.com/cache/dd/e9/dde9f3773c1d4cc64f00fb5d5161dcac.png',
+'http://emojipedia-us.s3.amazonaws.com/cache/2f/82/2f827c989cdb97118f9204d0338ae791.png',
+'http://emojipedia-us.s3.amazonaws.com/cache/1c/b0/1cb072ac3a48b73ef3a9e69fb244b976.png',
+'http://emojipedia-us.s3.amazonaws.com/cache/9f/29/9f29a5083a17ae471ee255d495ad836f.png';
+.make-face-classes(@i: length(@faceImgUrls)) when (@i > 0) {
+  .make-face-classes(@i - 1);
+  @imgUrl: extract(@faceImgUrls, @i);
+  @var: ~'[data-id="@{i}"]';
+  .field item@{var} {
+    .item-face(@imgUrl);
+  }
+}
+
+.make-face-classes(); // run the mixin
+.field item {
+  .item-back(@cardBackImageUrl);
+}
