@@ -68,8 +68,9 @@ item.open:after {
   background-color: black;
 }
 html {
-  font-size: 100px;
+  font-size: 70px;
 }
+
 /* MIXINS */
 .field item:before {
   background-image: url('http://emojipedia-us.s3.amazonaws.com/cache/a0/94/a0948a70a8cf4ca9e611d7047c2fde13.png');
