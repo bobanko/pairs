@@ -1,0 +1,52 @@
+@import "item/images";
+
+item {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s ease;
+  cursor: pointer;
+
+  &:before,
+  &:after {
+    content: '';
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    transition: all 500ms ease;
+    border-radius: 0.05rem;
+    box-shadow: 0 0 10px -2px black;
+    border: 0.1rem solid transparent;
+    box-sizing: border-box;
+    backface-visibility: hidden;
+  }
+  &:before {
+    transform: rotateY(-180deg);
+    background-color: black;
+  }
+  &:after {
+    background-color: #bbbbbb;
+    background-image: url(@cardBackImageUrl);
+  }
+  &.open {
+    //transform: scale(0.95);
+    &:before {
+      transform: rotateY(0deg);
+      background-color: #fff;
+    }
+    &:after {
+      transform: rotateY(180deg);
+      background-color: black;
+    }
+  }
+
+  &.hidden {
+    transition: all 300ms ease;
+    transform: rotateX(-90deg);
+    opacity: 0;
+  }
+}
+
