@@ -4,13 +4,30 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 const webpack = require('webpack');// need to be installed locally npm i webpack
 
 const DEV = NODE_ENV === 'development';
+const PROD = !DEV;
 
 module.exports = {
-	entry: './app/app', //base js file path
+
+	//custom entry/output
+	entry: {
+		home: './app/js/spa',
+		game: './app/app',
+		chat: './app/js/chat',
+	}, //base js file path
 	output: {
-		filename: 'dist/build.js', //dest name
-		library: 'pairsLib' //all exports will be available through this name
+		path: './build/',
+		filename: '[name].js',
+		library: '[name]',
 	},
+
+
+	//simple output
+	//entry: './app/app', //base js file path
+	/*output: {
+		filename: 'build/script.js', //dest name
+		library: 'pairsLib' //all exports will be available through this name
+	},*/
+
 	//watch: true, // watch for changes
 
 	watch: false,//DEV
@@ -27,13 +44,43 @@ module.exports = {
 
 	plugins: [
 		new webpack.DefinePlugin({DEV: JSON.stringify(DEV)}), //shit
+		// new webpack.optimize.UglifyJsPlugin({
+		// 	compress: {
+		// 		//drop_console: true,
+		// 		dead_code: true,
+		// 		join_vars: true,
+		// 		warnings: false
+		// 	}
+		// })
 	],
+
+	resolveLoader: {
+		modules: ["node_modules"],
+		moduleExtensions: ['-loader'],
+		extensions: ["*", ".js"]
+	},
 
 	module: {
 		loaders: [{
 			test: /\.js$/, //regex?
-			loader: 'babel-loader'
+			exclude: /node_modules/,
+			//loader: 'babel-loader',
+			loader: 'babel-loader?presets[]=es2015',
+			// query:{
+			// 	presets: ['es2015']
+			// }
 		}]
 	}
 
 };
+
+if(PROD) {
+	module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin({
+		compress: {
+			//drop_console: true,
+			dead_code: true,
+			join_vars: true,
+			warnings: false
+		}
+	}));
+}

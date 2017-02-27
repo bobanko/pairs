@@ -1,33 +1,36 @@
-const apiUrl = 'https://pg-api.azurewebsites.net/api';
+const apiUrl = '//pg-api.azurewebsites.net/api';
+
 const loginUrl = `${ apiUrl }/User/Login`;
 const chatCreateUrl = `${ apiUrl }/Chat/Create`;
 
-const wsUrl = 'ws://';
+const wsUrl = 'ws://pg-api.azurewebsites.net/api';
 
 //todo: grab from form
 let userData = {
 	"username": "bob",
-	"password": "string"
+	"password": "123"
 };
-let userDataJson = JSON.stringify(userData);
 
-// function handler(event){ console.log(event.target.responseText)};
-// console.clear();
-// var xhr = new XMLHttpRequest();
-// xhr.open('post',loginUrl);
-// xhr.setRequestHeader("Content-Type", "application/json");
-// xhr.addEventListener('load', handler);
-//xhr.send(userDataJson);
+const appHeaders = {
+	"Content-Type": "application/json"
+};
 
-function sendRequest(method, url, data, headers) {
-	return new Promise(function(resolve, reject) {
+const saveAuthToken = (response) => {
+	appHeaders.authToken = response.data.AuthToken;
+	return response;
+};
+
+
+function sendRequest(method, url, data) {
+	return new Promise(function (resolve, reject) {
 		const xhr = new XMLHttpRequest();
 		xhr.open(method, url);
-		for (let header in headers) {
-			xhr.setRequestHeader(header, headers[header]);
+		//set headers
+		for (let header in appHeaders) {
+			xhr.setRequestHeader(header, appHeaders[header]);
 		}
 		xhr.addEventListener('load', resolve);
-		xhr.send(data);
+		xhr.send(JSON.stringify(data));
 	});
 }
 
@@ -36,29 +39,23 @@ function debug(data) {
 	return data;
 }
 
-function getResponse(event){
-	return event.target.responseText;
+function getResponse(event) {
+	const response = event.target.responseText;
+	return JSON.parse(response);
 }
 
-let authToken = null;
-let saveAuthToken = (response) => {
-	authToken = response.data.AuthToken;
-	return response;
-};
 
-let configureAuthHeaders = (baseHeaders) =>{
+
+let configureAuthHeaders = (baseHeaders) => {
 	let authHeaders = Object.create(baseHeaders);
 	authHeaders['authToken'] = authToken;
 	return authHeaders;
 };
 
-let appJsonHeaders = {
-	"Content-Type": "application/json"
-};
 
 console.clear();
 
-const loginPromise = sendRequest('post', loginUrl, userDataJson, appJsonHeaders)
+const loginPromise = sendRequest('post', loginUrl, userDataJson, appHeaders)
 	.then(getResponse)
 	.then(debug)
 	.then(x => JSON.parse(x))
@@ -66,7 +63,6 @@ const loginPromise = sendRequest('post', loginUrl, userDataJson, appJsonHeaders)
 	.then(debug)
 	.then(saveAuthToken)
 	.catch(z => console.warn('err', z));
-
 
 
 let chatData = {
@@ -77,13 +73,11 @@ let chatDataJson = JSON.stringify(chatData);
 
 
 loginPromise
-	.then(function(){
-		return configureAuthHeaders(appJsonHeaders);
+	.then(function () {
+		return configureAuthHeaders(appHeaders);
 	}).then(createChat)
 	.then(getResponse)
-	.then(x=>console.log(x));
-
-
+	.then(x => console.log(x));
 
 
 function createChat(headers) {

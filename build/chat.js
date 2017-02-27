@@ -1,4 +1,4 @@
-var pairsLib =
+var chat =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -64,103 +64,96 @@ var pairsLib =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */
+/* 0 */,
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const apiUrl = 'https://kde.link/test/get_field_size.php';
-const imageCount = 12;
+"use strict";
 
-$.getJSON(apiUrl).then(getPairs).then(drawField);
 
-debugger;
+var apiUrl = '//pg-api.azurewebsites.net/api';
 
-console.log(true);
+var loginUrl = apiUrl + '/User/Login';
+var chatCreateUrl = apiUrl + '/Chat/Create';
 
-function getPairs(size) {
+var wsUrl = 'ws://pg-api.azurewebsites.net/api';
 
-	let pairCount = size.width * size.height / 2;
+//todo: grab from form
+var userData = {
+	"username": "bob",
+	"password": "123"
+};
 
-	let pairs = [];
-	for (let i = 0; i < pairCount; i++) {
-		pairs.push(getRandomInt(1, imageCount));
-	}
+var appHeaders = {
+	"Content-Type": "application/json"
+};
 
-	pairs = pairs.concat(pairs);
-	pairs.sort((a, b) => getRandomInt(0, 1));
+var saveAuthToken = function saveAuthToken(response) {
+	appHeaders.authToken = response.data.AuthToken;
+	return response;
+};
 
-	size.pairs = pairs;
-
-	return { size: size, pairs: pairs };
-}
-
-exports.getPairs = getPairs;
-
-function drawField(data) {
-
-	console.log(data.size);
-	let rows = [];
-	for (let rowIndex = 0; rowIndex < data.size.height; rowIndex++) {
-
-		let row = $('<div class="row"></div>');
-
-		for (let cellIndex = 0; cellIndex < data.size.width; cellIndex++) {
-
-			let rndImageIndex = data.pairs.shift();
-			let cell = $(`<div class="cell">
-							<item data-id=${rndImageIndex}></item>
-						</div>`);
-			row.append(cell);
+function sendRequest(method, url, data) {
+	return new Promise(function (resolve, reject) {
+		var xhr = new XMLHttpRequest();
+		xhr.open(method, url);
+		//set headers
+		for (var header in appHeaders) {
+			xhr.setRequestHeader(header, appHeaders[header]);
 		}
-
-		rows.push(row);
-	}
-
-	$('.field').html(rows);
+		xhr.addEventListener('load', resolve);
+		xhr.send(JSON.stringify(data));
+	});
 }
 
-function getRandomInt(min, max) {
-	return min + Math.floor(Math.random() * (max - min + 1));
+function debug(data) {
+	console.log(data);
+	return data;
 }
 
-let selectedPairs = [];
-
-function selectItem(event) {
-	if (event.target.tagName === 'ITEM') {
-		let element = event.target;
-
-		let elementIndex = selectedPairs.indexOf(element);
-		if (elementIndex >= 0) {
-			$(element).toggleClass('open', false);
-			selectedPairs.splice(elementIndex, 1);
-			return;
-		}
-
-		selectedPairs.push(element);
-		$(element).toggleClass('open', true);
-
-		//second item opened - check both and decide
-		if (selectedPairs.length === 2) {
-			let isSame = selectedPairs.map(element => $(element).data('id')).reduce((a, b) => {
-				return a === b;
-			});
-
-			if (isSame) {
-				selectedPairs.forEach(e => setTimeout(() => $(e).toggleClass('hidden'), 500));
-			} else {
-				selectedPairs.forEach(e => setTimeout(() => $(e).toggleClass('open', false), 500));
-			}
-			//clear pairs arr
-			selectedPairs.length = 0;
-		}
-	}
+function getResponse(event) {
+	var response = event.target.responseText;
+	return JSON.parse(response);
 }
 
-document.querySelector('.field').addEventListener('click', selectItem);
+var configureAuthHeaders = function configureAuthHeaders(baseHeaders) {
+	var authHeaders = Object.create(baseHeaders);
+	authHeaders['authToken'] = authToken;
+	return authHeaders;
+};
+
+console.clear();
+
+var loginPromise = sendRequest('post', loginUrl, userDataJson, appHeaders).then(getResponse).then(debug).then(function (x) {
+	return JSON.parse(x);
+}).then(function (x) {
+	return new Promise(function (res, rej) {
+		return res(x);
+	});
+}).then(debug).then(saveAuthToken).catch(function (z) {
+	return console.warn('err', z);
+});
+
+var chatData = {
+	"id": "string",
+	"name": "string"
+};
+var chatDataJson = JSON.stringify(chatData);
+
+loginPromise.then(function () {
+	return configureAuthHeaders(appHeaders);
+}).then(createChat).then(getResponse).then(function (x) {
+	return console.log(x);
+});
+
+function createChat(headers) {
+	return sendRequest('post', chatCreateUrl, chatDataJson, headers);
+}
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=build.js.map
+//# sourceMappingURL=chat.js.map

@@ -3,7 +3,7 @@ const imageCount = 12;
 
 $.getJSON(apiUrl).then(getPairs).then(drawField);
 
-debugger;
+//debugger;
 
 console.log(DEV);
 
