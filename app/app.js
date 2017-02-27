@@ -3,6 +3,9 @@ const imageCount = 12;
 
 $.getJSON(apiUrl).then(getPairs).then(drawField);
 
+debugger;
+
+console.log(DEV);
 
 function getPairs(size) {
 
@@ -22,6 +25,8 @@ function getPairs(size) {
 	return {size: size, pairs: pairs};
 }
 
+exports.getPairs = getPairs;
+
 
 function drawField(data) {
 
@@ -36,7 +41,7 @@ function drawField(data) {
 			let rndImageIndex = data.pairs.shift();
 			let cell = $(`<div class="cell">
 							<item data-id=${ rndImageIndex }></item>
-							</div>`);
+						</div>`);
 			row.append(cell);
 		}
 
