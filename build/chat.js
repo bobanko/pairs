@@ -128,7 +128,7 @@ var configureAuthHeaders = function configureAuthHeaders(baseHeaders) {
 
 console.clear();
 
-var loginPromise = sendRequest('post', loginUrl, userDataJson, appHeaders).then(getResponse).then(debug).then(function (x) {
+var loginPromise = sendRequest('post', loginUrl, userData, appHeaders).then(getResponse).then(debug).then(function (x) {
 	return JSON.parse(x);
 }).then(function (x) {
 	return new Promise(function (res, rej) {

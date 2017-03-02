@@ -55,7 +55,7 @@ let configureAuthHeaders = (baseHeaders) => {
 
 console.clear();
 
-const loginPromise = sendRequest('post', loginUrl, userDataJson, appHeaders)
+const loginPromise = sendRequest('post', loginUrl, userData, appHeaders)
 	.then(getResponse)
 	.then(debug)
 	.then(x => JSON.parse(x))

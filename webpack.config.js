@@ -70,6 +70,11 @@ module.exports = {
 			// 	presets: ['es2015']
 			// }
 		}]
+	},
+
+	devServer:{
+		host: 'localhost', //default
+		port: 8080 //default
 	}
 
 };

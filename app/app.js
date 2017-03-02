@@ -1,6 +1,9 @@
 const apiUrl = 'https://kde.link/test/get_field_size.php';
 const imageCount = 12;
 
+
+
+
 $.getJSON(apiUrl).then(getPairs).then(drawField);
 
 //debugger;
