@@ -21,24 +21,22 @@ module.exports = {
 	},
 
 
-	//simple output
+	//simple output #1
 	//entry: './app/app', //base js file path
 	/*output: {
-		filename: 'build/script.js', //dest name
-		library: 'pairsLib' //all exports will be available through this name
-	},*/
+	 filename: 'build/script.js', //dest name
+	 library: 'pairsLib' //all exports will be available through this name
+	 },*/
 
 	//watch: true, // watch for changes
 
 	watch: false,//DEV
-
 	watchOptions: {
 		aggregateTimeout: 100 //wait after changes //300 default
 	},
 
 	//devtool: 'source-map',
 	//devtool: 'eval',
-
 
 	devtool: DEV ? 'source-map' : null,
 
@@ -69,17 +67,31 @@ module.exports = {
 			// query:{
 			// 	presets: ['es2015']
 			// }
-		}]
+		},{
+			test: /\.css$/,
+			loader: 'css-loader'
+		}, {
+			test: /\.less$/,
+			use: [
+				'style-loader',
+				{loader: 'css-loader'},
+				{loader: 'less-loader'}
+			]
+		}
+
+
+		]
 	},
 
-	devServer:{
+	//server ?
+	devServer: {
 		host: 'localhost', //default
 		port: 8080 //default
 	}
 
 };
 
-if(PROD) {
+if (PROD) {
 	module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin({
 		compress: {
 			//drop_console: true,

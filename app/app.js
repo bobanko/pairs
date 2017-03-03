@@ -1,9 +1,9 @@
-const apiUrl = 'https://kde.link/test/get_field_size.php';
 const imageCount = 12;
 
+import css from './styles/index.less';
 
-
-
+//todo: move getFieldSize method to separate module
+const apiUrl = 'https://kde.link/test/get_field_size.php';
 $.getJSON(apiUrl).then(getPairs).then(drawField);
 
 //debugger;
@@ -28,13 +28,14 @@ function getPairs(size) {
 	return {size: size, pairs: pairs};
 }
 
+
 exports.getPairs = getPairs;
 
 
 function drawField(data) {
 
 	console.log(data.size);
-	let rows= [];
+	let rows = [];
 	for (let rowIndex = 0; rowIndex < data.size.height; rowIndex++) {
 
 		let row = $('<div class="row"></div>');
