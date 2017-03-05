@@ -20,28 +20,19 @@ module.exports = {
 		library: '[name]',
 	},
 
+	watch: false,//DEV// watch for changes
 
-	//simple output #1
-	//entry: './app/app', //base js file path
-	/*output: {
-	 filename: 'build/script.js', //dest name
-	 library: 'pairsLib' //all exports will be available through this name
-	 },*/
-
-	//watch: true, // watch for changes
-
-	watch: false,//DEV
 	watchOptions: {
 		aggregateTimeout: 100 //wait after changes //300 default
 	},
 
-	//devtool: 'source-map',
+	devtool: 'source-map',
 	//devtool: 'eval',
 
-	devtool: DEV ? 'source-map' : null,
+	//devtool: DEV ? 'source-map' : null,
 
 	plugins: [
-		new webpack.DefinePlugin({DEV: JSON.stringify(DEV)}), //shit
+		//new webpack.DefinePlugin({DEV: JSON.stringify(DEV)}), //shit
 		// new webpack.optimize.UglifyJsPlugin({
 		// 	compress: {
 		// 		//drop_console: true,
@@ -63,10 +54,10 @@ module.exports = {
 			test: /\.js$/, //regex?
 			exclude: /node_modules/,
 			//loader: 'babel-loader',
-			loader: 'babel-loader?presets[]=es2015',
-			// query:{
-			// 	presets: ['es2015']
-			// }
+			loader: 'babel-loader',//?presets[]=es2015
+			query:{
+				presets: ['es2015']
+			}
 		},{
 			test: /\.css$/,
 			loader: 'css-loader'
@@ -90,14 +81,3 @@ module.exports = {
 	}
 
 };
-
-if (PROD) {
-	module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin({
-		compress: {
-			//drop_console: true,
-			dead_code: true,
-			join_vars: true,
-			warnings: false
-		}
-	}));
-}

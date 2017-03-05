@@ -1,14 +1,16 @@
+'use strict';
 const imageCount = 12;
 
-import css from './styles/index.less';
+//import css from './styles/index.less';
 
-//todo: move getFieldSize method to separate module
-const apiUrl = 'https://kde.link/test/get_field_size.php';
-$.getJSON(apiUrl).then(getPairs).then(drawField);
+import { getFieldSize } from './components/field/fieldSize.service';
 
-//debugger;
+import { Field } from './components/field/field';
 
-console.log(DEV);
+import { getRandomInt } from './helpers/getRandomInt';
+
+getFieldSize().then(getPairs).then(drawField);
+
 
 function getPairs(size) {
 
@@ -28,39 +30,13 @@ function getPairs(size) {
 	return {size: size, pairs: pairs};
 }
 
-
-exports.getPairs = getPairs;
-
-
 function drawField(data) {
 
-	console.log(data.size);
-	let rows = [];
-	for (let rowIndex = 0; rowIndex < data.size.height; rowIndex++) {
+	let field = new Field(data.size);
 
-		let row = $('<div class="row"></div>');
-
-		for (let cellIndex = 0; cellIndex < data.size.width; cellIndex++) {
-
-			let rndImageIndex = data.pairs.shift();
-			let cell = $(`<div class="cell">
-							<item data-id=${ rndImageIndex }></item>
-						</div>`);
-			row.append(cell);
-		}
-
-		rows.push(row);
-	}
-
-	$('.field').html(rows);
+	field.draw(data.items);
 
 }
-
-
-function getRandomInt(min, max) {
-	return min + Math.floor(Math.random() * (max - min + 1));
-}
-
 
 let selectedPairs = [];
 
@@ -87,7 +63,7 @@ function selectItem(event) {
 				});
 
 			if (isSame) {
-				selectedPairs.forEach((e) => setTimeout(() => $(e).toggleClass('hidden'), 500));
+				selectedPairs.forEach(e => setTimeout(() => $(e).toggleClass('hidden'), 500));
 			} else {
 				selectedPairs.forEach(e => setTimeout(() => $(e).toggleClass('open', false), 500));
 			}
