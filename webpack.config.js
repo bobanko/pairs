@@ -20,7 +20,7 @@ module.exports = {
 		library: '[name]',
 	},
 
-	watch: false,
+	watch: true,
 
 	watchOptions: {
 		aggregateTimeout: 100 //wait after changes //300 default
@@ -36,24 +36,24 @@ module.exports = {
 
 	module: {
 		rules: [
-			{
-				test: /\.less$/i,
-				use: extractLESS.extract(['css-loader', 'less-loader'])
-			},
 			// {
-			// 	test: /\.less$/,
-			// 	use: [{
-			// 		loader: "style-loader"
-			// 	}, {
-			// 		loader: "css-loader", options: {
-			// 			sourceMap: true
-			// 		}
-			// 	}, {
-			// 		loader: "less-loader", options: {
-			// 			sourceMap: true
-			// 		}
-			// 	}]
+			// 	test: /\.less$/i,
+			// 	use: extractLESS.extract(['css-loader', 'less-loader'])
 			// },
+			{
+				test: /\.less$/,
+				use: [{
+					loader: "style-loader"
+				}, {
+					loader: "css-loader", options: {
+						sourceMap: true
+					}
+				}, {
+					loader: "less-loader", options: {
+						sourceMap: true
+					}
+				}]
+			},
 			{
 				test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
 				use: [
@@ -70,7 +70,7 @@ module.exports = {
 	},
 
 	plugins: [
-		extractLESS
+		//extractLESS
 	],
 
 	devServer: {
