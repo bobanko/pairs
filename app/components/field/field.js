@@ -4,7 +4,7 @@ export class Field {
 
 	constructor(fieldSize) {
 		this.size = fieldSize;
-		
+
 	}
 
 	init(items) {
@@ -29,6 +29,12 @@ export class Field {
 
 			rows.push(row);
 		}
+
+		const maxSize = Math.max(this.size.height, this.size.width);
+
+		//todo: do it without jquery
 		$('.field').html(rows);
+		$('.field')[0].dataset.maxSize = maxSize;
+
 	}
 }

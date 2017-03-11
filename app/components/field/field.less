@@ -9,10 +9,26 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 10vmin;
-      height: 10vmin;
+
       perspective: 450px;
       margin: 0.05rem;
     }
+  }
+}
+
+.field > .row > .cell {
+  width: 1em;
+  height: 1em;
+}
+
+
+@fieldSize: 80vmin;
+.max-size-classes(8);
+
+.max-size-classes(@i) when (@i > 1) {
+  .max-size-classes(@i - 1);
+  @dataAttr: ~'[data-max-size="@{i}"]';
+  .field@{dataAttr} {
+    font-size: floor(@fieldSize / @i);
   }
 }
