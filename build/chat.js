@@ -64,12 +64,12 @@ var chat =
 /******/ 	__webpack_require__.p = "./build/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 30);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 6:
+/***/ 30:
 /***/ (function(module, exports) {
 
 const apiUrl = '//pg-api.azurewebsites.net/api';

@@ -64,12 +64,12 @@ var home =
 /******/ 	__webpack_require__.p = "./build/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 31);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 7:
+/***/ 31:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
