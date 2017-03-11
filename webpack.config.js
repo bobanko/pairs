@@ -1,10 +1,9 @@
 'use strict';
 
-const NODE_ENV = process.env.NODE_ENV || 'development';
 const webpack = require('webpack');// need to be installed locally npm i webpack
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const DEV = NODE_ENV === 'development';
-const PROD = !DEV;
+const extractLESS = new ExtractTextPlugin('[name].css');
 
 module.exports = {
 
@@ -16,32 +15,18 @@ module.exports = {
 	}, //base js file path
 	output: {
 		path: './build/',
+		publicPath: './build/',
 		filename: '[name].js',
 		library: '[name]',
 	},
 
-	watch: false,//DEV// watch for changes
+	watch: false,
 
 	watchOptions: {
 		aggregateTimeout: 100 //wait after changes //300 default
 	},
 
 	devtool: 'source-map',
-	//devtool: 'eval',
-
-	//devtool: DEV ? 'source-map' : null,
-
-	plugins: [
-		//new webpack.DefinePlugin({DEV: JSON.stringify(DEV)}), //shit
-		// new webpack.optimize.UglifyJsPlugin({
-		// 	compress: {
-		// 		//drop_console: true,
-		// 		dead_code: true,
-		// 		join_vars: true,
-		// 		warnings: false
-		// 	}
-		// })
-	],
 
 	resolveLoader: {
 		modules: ["node_modules"],
@@ -50,31 +35,44 @@ module.exports = {
 	},
 
 	module: {
-		loaders: [{
-			test: /\.js$/, //regex?
-			exclude: /node_modules/,
-			//loader: 'babel-loader',
-			loader: 'babel-loader',//?presets[]=es2015
-			query:{
-				presets: ['es2015']
+		rules: [
+			{
+				test: /\.less$/i,
+				use: extractLESS.extract(['css-loader', 'less-loader'])
+			},
+			// {
+			// 	test: /\.less$/,
+			// 	use: [{
+			// 		loader: "style-loader"
+			// 	}, {
+			// 		loader: "css-loader", options: {
+			// 			sourceMap: true
+			// 		}
+			// 	}, {
+			// 		loader: "less-loader", options: {
+			// 			sourceMap: true
+			// 		}
+			// 	}]
+			// },
+			{
+				test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							limit: 12000,
+						}
+					}
+				]
 			}
-		},{
-			test: /\.css$/,
-			loader: 'css-loader'
-		}, {
-			test: /\.less$/,
-			use: [
-				'style-loader',
-				{loader: 'css-loader'},
-				{loader: 'less-loader'}
-			]
-		}
+		],
 
-
-		]
 	},
 
-	//server ?
+	plugins: [
+		extractLESS
+	],
+
 	devServer: {
 		host: 'localhost', //default
 		port: 8080 //default
