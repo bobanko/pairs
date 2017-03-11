@@ -1,0 +1,11 @@
+{
+  "name": "pairs",
+  "version": "0.0.1",
+  "devDependencies": {
+    "file-loader": "^0.10.1",
+    "less": "^2.7.2",
+    "less-loader": "^3.0.0",
+    "style-loader": "^0.13.2",
+    "url-loader": "^0.5.8"
+  }
+}
