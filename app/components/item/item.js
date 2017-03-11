@@ -11,7 +11,7 @@ export class Item {
 
 		const element = document.createElement('div');
 		element.classList.add('cell');
-		element.innerHTML = `<item data-id=${ this.imageIndex }></item>`;
+		element.innerHTML = `<item data-id=${ imageIndex }></item>`;
 		this.element = element;
 	}
 

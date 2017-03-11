@@ -1,13 +1,13 @@
-import { Item } from '../item/item';
+import {Item} from '../item/item';
 
 export class Field {
 
 	constructor(fieldSize) {
 		this.size = fieldSize;
-
+		
 	}
 
-	init(items){
+	init(items) {
 		this.draw(items);
 	}
 
@@ -24,14 +24,11 @@ export class Field {
 
 				let item = new Item(rndImageIndex);
 
-				row.append(item.html);
+				row.append(item.element.outerHTML);
 			}
 
 			rows.push(row);
 		}
-
 		$('.field').html(rows);
 	}
-
-
 }

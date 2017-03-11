@@ -1,12 +1,10 @@
 'use strict';
 const imageCount = 12;
 
-//import css from './styles/index.less';
+import './styles/index.less';
 
 import { getFieldSize } from './components/field/fieldSize.service';
-
 import { Field } from './components/field/field';
-
 import { getRandomInt } from './helpers/getRandomInt';
 
 getFieldSize().then(getPairs).then(drawField);
@@ -34,7 +32,7 @@ function drawField(data) {
 
 	let field = new Field(data.size);
 
-	field.draw(data.items);
+	field.draw(data.pairs);
 
 }
 
