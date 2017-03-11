@@ -61,24 +61,24 @@ var home =
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "./build/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 6:
+/***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
 
 $('a.link').on('click', function (event) {
 	event.preventDefault();
 
 	$('.container').load(this.href);
+
 });
 
 /*
@@ -88,6 +88,7 @@ $('a.link').on('click', function (event) {
 	<div class="container">
 	content will be inserted here
 </div>*/
+
 
 /***/ })
 

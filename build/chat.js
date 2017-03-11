@@ -61,48 +61,46 @@ var chat =
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "./build/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 5:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ 6:
+/***/ (function(module, exports) {
 
-"use strict";
+const apiUrl = '//pg-api.azurewebsites.net/api';
 
+const loginUrl = `${ apiUrl }/User/Login`;
+const chatCreateUrl = `${ apiUrl }/Chat/Create`;
 
-var apiUrl = '//pg-api.azurewebsites.net/api';
-
-var loginUrl = apiUrl + '/User/Login';
-var chatCreateUrl = apiUrl + '/Chat/Create';
-
-var wsUrl = 'ws://pg-api.azurewebsites.net/api';
+const wsUrl = 'ws://pg-api.azurewebsites.net/api';
 
 //todo: grab from form
-var userData = {
+let userData = {
 	"username": "bob",
 	"password": "123"
 };
 
-var appHeaders = {
+const appHeaders = {
 	"Content-Type": "application/json"
 };
 
-var saveAuthToken = function saveAuthToken(response) {
+const saveAuthToken = (response) => {
 	appHeaders.authToken = response.data.AuthToken;
 	return response;
 };
 
+
 function sendRequest(method, url, data) {
 	return new Promise(function (resolve, reject) {
-		var xhr = new XMLHttpRequest();
+		const xhr = new XMLHttpRequest();
 		xhr.open(method, url);
 		//set headers
-		for (var header in appHeaders) {
+		for (let header in appHeaders) {
 			xhr.setRequestHeader(header, appHeaders[header]);
 		}
 		xhr.addEventListener('load', resolve);
@@ -116,43 +114,50 @@ function debug(data) {
 }
 
 function getResponse(event) {
-	var response = event.target.responseText;
+	const response = event.target.responseText;
 	return JSON.parse(response);
 }
 
-var configureAuthHeaders = function configureAuthHeaders(baseHeaders) {
-	var authHeaders = Object.create(baseHeaders);
+
+
+let configureAuthHeaders = (baseHeaders) => {
+	let authHeaders = Object.create(baseHeaders);
 	authHeaders['authToken'] = authToken;
 	return authHeaders;
 };
 
+
 console.clear();
 
-var loginPromise = sendRequest('post', loginUrl, userData, appHeaders).then(getResponse).then(debug).then(function (x) {
-	return JSON.parse(x);
-}).then(function (x) {
-	return new Promise(function (res, rej) {
-		return res(x);
-	});
-}).then(debug).then(saveAuthToken).catch(function (z) {
-	return console.warn('err', z);
-});
+const loginPromise = sendRequest('post', loginUrl, userData, appHeaders)
+	.then(getResponse)
+	.then(debug)
+	.then(x => JSON.parse(x))
+	.then((x) => new Promise((res, rej) => res(x)))
+	.then(debug)
+	.then(saveAuthToken)
+	.catch(z => console.warn('err', z));
 
-var chatData = {
+
+let chatData = {
 	"id": "string",
 	"name": "string"
 };
-var chatDataJson = JSON.stringify(chatData);
+let chatDataJson = JSON.stringify(chatData);
 
-loginPromise.then(function () {
-	return configureAuthHeaders(appHeaders);
-}).then(createChat).then(getResponse).then(function (x) {
-	return console.log(x);
-});
+
+loginPromise
+	.then(function () {
+		return configureAuthHeaders(appHeaders);
+	}).then(createChat)
+	.then(getResponse)
+	.then(x => console.log(x));
+
 
 function createChat(headers) {
 	return sendRequest('post', chatCreateUrl, chatDataJson, headers);
 }
+
 
 /***/ })
 
