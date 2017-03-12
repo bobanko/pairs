@@ -3,11 +3,59 @@ const imageCount = 12;
 
 import './styles/index.less';
 
-import { getFieldSize } from './components/field/fieldSize.service';
-import { Field } from './components/field/field';
-import { getRandomInt } from './helpers/getRandomInt';
+import {getFieldSize} from './components/field/fieldSize.service';
+import {Field} from './components/field/field';
+import {getRandomInt} from './helpers/getRandomInt';
+import {getLevelTimeout} from './helpers/getLevelTimeout';
+import {Timer} from './components/timer/timer';
 
-getFieldSize().then(getPairs).then(drawField);
+
+getFieldSize()
+	.then(getPairs)
+	.then(drawField)
+	.then(setTimer)
+	.then(win)
+	.catch(fail);
+
+
+function fail() {
+	$('.timer').text('😰 you failed 💩 🤡');
+}
+
+function win() {
+	$('.timer').text('😺 👑 you won ✊')
+}
+
+
+function setTimer(data) {
+	return new Promise(function (resolve, reject) {
+
+		const pairCount = data.size.width * data.size.height;
+		const timeout = getLevelTimeout(pairCount);
+
+		const timer = new Timer(timeout);
+
+		function getLastTwo(number) {
+			return number < 10 ? '0' + number : number;
+		}
+
+		timer.addEventListener('tick', (time) => {
+			const dateTime = new Date(time);
+			$('.timer').text(`${ getLastTwo(dateTime.getMinutes())} : ${ getLastTwo(dateTime.getSeconds()) } `);
+
+
+			if($('.field item:not(.hidden)').length===0){
+				resolve();
+				timer.stop();
+			}
+		});
+
+		timer.addEventListener('stop', (time) => {
+			reject();
+		});
+
+	});
+}
 
 
 function getPairs(size) {
@@ -31,11 +79,10 @@ function getPairs(size) {
 }
 
 function drawField(data) {
-
 	let field = new Field(data.size);
-
 	field.draw(data.pairs);
 
+	return data;
 }
 
 let selectedPairs = [];
