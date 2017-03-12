@@ -2196,10 +2196,10 @@ function isnan (val) {
 
 exports = module.exports = __webpack_require__(17)();
 // imports
-
+exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Baloo+Bhaina);", ""]);
 
 // module
-exports.push([module.i, ".field {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.field .row {\n  display: flex;\n  flex-direction: row;\n}\n.field .row .cell {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  perspective: 450px;\n  margin: 0.05rem;\n}\n.field > .row > .cell {\n  width: 1em;\n  height: 1em;\n}\n.field[data-max-size=\"2\"] {\n  font-size: 40vmin;\n}\n.field[data-max-size=\"3\"] {\n  font-size: 26vmin;\n}\n.field[data-max-size=\"4\"] {\n  font-size: 20vmin;\n}\n.field[data-max-size=\"5\"] {\n  font-size: 16vmin;\n}\n.field[data-max-size=\"6\"] {\n  font-size: 13vmin;\n}\n.field[data-max-size=\"7\"] {\n  font-size: 11vmin;\n}\n.field[data-max-size=\"8\"] {\n  font-size: 10vmin;\n}\n.field item:before {\n  background-image: url(" + __webpack_require__(2) + ");\n}\n.field item[data-id=\"1\"]:before {\n  background-image: url(" + __webpack_require__(4) + ");\n}\n.field item[data-id=\"2\"]:before {\n  background-image: url(" + __webpack_require__(5) + ");\n}\n.field item[data-id=\"3\"]:before {\n  background-image: url(" + __webpack_require__(6) + ");\n}\n.field item[data-id=\"4\"]:before {\n  background-image: url(" + __webpack_require__(3) + ");\n}\n.field item[data-id=\"5\"]:before {\n  background-image: url(" + __webpack_require__(7) + ");\n}\n.field item[data-id=\"6\"]:before {\n  background-image: url(" + __webpack_require__(1) + ");\n}\n.field item[data-id=\"7\"]:before {\n  background-image: url(" + __webpack_require__(0) + ");\n}\n.field item[data-id=\"8\"]:before {\n  background-image: url(" + __webpack_require__(26) + ");\n}\n.field item[data-id=\"9\"]:before {\n  background-image: url(" + __webpack_require__(27) + ");\n}\n.field item[data-id=\"10\"]:before {\n  background-image: url(" + __webpack_require__(24) + ");\n}\n.field item[data-id=\"11\"]:before {\n  background-image: url(" + __webpack_require__(23) + ");\n}\n.field item[data-id=\"12\"]:before {\n  background-image: url(" + __webpack_require__(25) + ");\n}\n/* MIXINS */\nitem {\n  display: flex;\n  width: 100%;\n  height: 100%;\n  transition: transform 1s ease;\n  cursor: pointer;\n}\nitem:before,\nitem:after {\n  content: '';\n  width: inherit;\n  height: inherit;\n  position: absolute;\n  background-repeat: no-repeat;\n  background-position: center center;\n  background-size: contain;\n  transition: all 500ms ease;\n  border-radius: 0.05rem;\n  box-shadow: 0 0 10px -2px black;\n  border: 0.1rem solid transparent;\n  box-sizing: border-box;\n  backface-visibility: hidden;\n}\nitem:before {\n  transform: rotateY(-180deg);\n  background-color: black;\n}\nitem:after {\n  background-color: #bbbbbb;\n  background-image: url(" + __webpack_require__(2) + ");\n}\nitem.open:before {\n  transform: rotateY(0deg);\n  background-color: #fff;\n}\nitem.open:after {\n  transform: rotateY(180deg);\n  background-color: black;\n}\nitem.hidden {\n  transition: all 300ms ease;\n  transform: rotateX(-90deg);\n  opacity: 0;\n}\nhtml {\n  font-size: 70px;\n}\nhtml,\nbody {\n  height: 100%;\n  background-color: lightgray;\n}\nbody {\n  margin: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n}\n", "", {"version":3,"sources":["B:/Projects/pairs/app/styles/B:/Projects/pairs/app/components/field/field.less","B:/Projects/pairs/app/styles/index.less","B:/Projects/pairs/app/styles/B:/Projects/pairs/app/components/item/images.less","B:/Projects/pairs/app/styles/B:/Projects/pairs/app/components/item/item.less","B:/Projects/pairs/app/styles/B:/Projects/pairs/app/styles/index.less"],"names":[],"mappings":"AAAA;EACE,cAAA;EACA,uBAAA;EACA,oBAAA;CCCD;ADJD;EAKI,cAAA;EACA,oBAAA;CCEH;ADRD;EAQM,cAAA;EACA,oBAAA;EACA,wBAAA;EAEA,mBAAA;EACA,gBAAA;CCEL;ADGD;EACE,WAAA;EACA,YAAA;CCDD;ADWC;EACE,kBAAA;CCTH;ADQC;EACE,kBAAA;CCNH;ADKC;EACE,kBAAA;CCHH;ADEC;EACE,kBAAA;CCAH;ADDC;EACE,kBAAA;CCGH;ADJC;EACE,kBAAA;CCMH;ADPC;EACE,kBAAA;CCSH;AClBC;EACE,gDAAA;CDoBH;ACfC;EACE,gDAAA;CDiBH;AClBC;EACE,gDAAA;CDoBH;ACrBC;EACE,gDAAA;CDuBH;ACxBC;EACE,gDAAA;CD0BH;AC3BC;EACE,gDAAA;CD6BH;AC9BC;EACE,gDAAA;CDgCH;ACjCC;EACE,gDAAA;CDmCH;ACpCC;EACE,gDAAA;CDsCH;ACvCC;EACE,gDAAA;CDyCH;AC1CC;EACE,iDAAA;CD4CH;AC7CC;EACE,iDAAA;CD+CH;AChDC;EACE,iDAAA;CDkDH;AACD,YAAY;AE9EZ;EACE,cAAA;EACA,YAAA;EACA,aAAA;EACA,8BAAA;EACA,gBAAA;CFgFD;AE9EC;;EAEE,YAAA;EACA,eAAA;EACA,gBAAA;EACA,mBAAA;EACA,6BAAA;EACA,mCAAA;EACA,yBAAA;EACA,2BAAA;EACA,uBAAA;EACA,gCAAA;EACA,iCAAA;EACA,uBAAA;EACA,4BAAA;CFgFH;AE9EC;EACE,4BAAA;EACA,wBAAA;CFgFH;AE9EC;EACE,0BAAA;EACA,iDAAA;CFgFH;AE5EG;EACE,yBAAA;EACA,uBAAA;CF8EL;AE5EG;EACE,2BAAA;EACA,wBAAA;CF8EL;AE1EC;EACE,2BAAA;EACA,2BAAA;EACA,WAAA;CF4EH;AGzHD;EACE,gBAAA;CH2HD;AGxHD;;EAEE,aAAA;EACA,4BAAA;CH0HD;AGtHD;EACE,UAAA;EACA,cAAA;EACA,oBAAA;EACA,wBAAA;EACA,uBAAA;CHwHD","file":"index.less","sourcesContent":[".field {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  .row {\n    display: flex;\n    flex-direction: row;\n    .cell {\n      display: flex;\n      align-items: center;\n      justify-content: center;\n\n      perspective: 450px;\n      margin: 0.05rem;\n    }\n  }\n}\n\n.field > .row > .cell {\n  width: 1em;\n  height: 1em;\n}\n\n\n@fieldSize: 80vmin;\n.max-size-classes(8);\n\n.max-size-classes(@i) when (@i > 1) {\n  .max-size-classes(@i - 1);\n  @dataAttr: ~'[data-max-size=\"@{i}\"]';\n  .field@{dataAttr} {\n    font-size: floor(@fieldSize / @i);\n  }\n}\n",".field {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.field .row {\n  display: flex;\n  flex-direction: row;\n}\n.field .row .cell {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  perspective: 450px;\n  margin: 0.05rem;\n}\n.field > .row > .cell {\n  width: 1em;\n  height: 1em;\n}\n.field[data-max-size=\"2\"] {\n  font-size: 40vmin;\n}\n.field[data-max-size=\"3\"] {\n  font-size: 26vmin;\n}\n.field[data-max-size=\"4\"] {\n  font-size: 20vmin;\n}\n.field[data-max-size=\"5\"] {\n  font-size: 16vmin;\n}\n.field[data-max-size=\"6\"] {\n  font-size: 13vmin;\n}\n.field[data-max-size=\"7\"] {\n  font-size: 11vmin;\n}\n.field[data-max-size=\"8\"] {\n  font-size: 10vmin;\n}\n.field item:before {\n  background-image: url('../components/item/images/a0948a70a8cf4ca9e611d7047c2fde13.png');\n}\n.field item[data-id=\"1\"]:before {\n  background-image: url('../components/item/images/e10c30fde767f8e6b9778f29c7020daa.png');\n}\n.field item[data-id=\"2\"]:before {\n  background-image: url('../components/item/images/edff9778698ea291b3f8b696eaa312a7.png');\n}\n.field item[data-id=\"3\"]:before {\n  background-image: url('../components/item/images/f3eddd01374ae11acc60554afb78a291.png');\n}\n.field item[data-id=\"4\"]:before {\n  background-image: url('../components/item/images/adceea049986061e64d9ddda49e19ac3.png');\n}\n.field item[data-id=\"5\"]:before {\n  background-image: url('../components/item/images/f5892f9fb88691bbfc0685284ee6d0a0.png');\n}\n.field item[data-id=\"6\"]:before {\n  background-image: url('../components/item/images/80ef858b870ff16fb3aad66955bd44ea.png');\n}\n.field item[data-id=\"7\"]:before {\n  background-image: url('../components/item/images/0dac2944ab9ab6523ed53b750ba07d74.png');\n}\n.field item[data-id=\"8\"]:before {\n  background-image: url('../components/item/images/af7c07d3fc4b0d8b93de8c5573edd8a9.png');\n}\n.field item[data-id=\"9\"]:before {\n  background-image: url('../components/item/images/dde9f3773c1d4cc64f00fb5d5161dcac.png');\n}\n.field item[data-id=\"10\"]:before {\n  background-image: url('../components/item/images/2f827c989cdb97118f9204d0338ae791.png');\n}\n.field item[data-id=\"11\"]:before {\n  background-image: url('../components/item/images/1cb072ac3a48b73ef3a9e69fb244b976.png');\n}\n.field item[data-id=\"12\"]:before {\n  background-image: url('../components/item/images/9f29a5083a17ae471ee255d495ad836f.png');\n}\n/* MIXINS */\nitem {\n  display: flex;\n  width: 100%;\n  height: 100%;\n  transition: transform 1s ease;\n  cursor: pointer;\n}\nitem:before,\nitem:after {\n  content: '';\n  width: inherit;\n  height: inherit;\n  position: absolute;\n  background-repeat: no-repeat;\n  background-position: center center;\n  background-size: contain;\n  transition: all 500ms ease;\n  border-radius: 0.05rem;\n  box-shadow: 0 0 10px -2px black;\n  border: 0.1rem solid transparent;\n  box-sizing: border-box;\n  backface-visibility: hidden;\n}\nitem:before {\n  transform: rotateY(-180deg);\n  background-color: black;\n}\nitem:after {\n  background-color: #bbbbbb;\n  background-image: url('../components/item/images/a0948a70a8cf4ca9e611d7047c2fde13.png');\n}\nitem.open:before {\n  transform: rotateY(0deg);\n  background-color: #fff;\n}\nitem.open:after {\n  transform: rotateY(180deg);\n  background-color: black;\n}\nitem.hidden {\n  transition: all 300ms ease;\n  transform: rotateX(-90deg);\n  opacity: 0;\n}\nhtml {\n  font-size: 70px;\n}\nhtml,\nbody {\n  height: 100%;\n  background-color: lightgray;\n}\nbody {\n  margin: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n}\n","@cardBackImageUrl: 'images/a0948a70a8cf4ca9e611d7047c2fde13.png';\n\n@faceImgUrls: 'images/e10c30fde767f8e6b9778f29c7020daa.png',\n'images/edff9778698ea291b3f8b696eaa312a7.png',\n'images/f3eddd01374ae11acc60554afb78a291.png',\n'images/adceea049986061e64d9ddda49e19ac3.png',\n'images/f5892f9fb88691bbfc0685284ee6d0a0.png',\n'images/80ef858b870ff16fb3aad66955bd44ea.png',\n'images/0dac2944ab9ab6523ed53b750ba07d74.png',\n'images/af7c07d3fc4b0d8b93de8c5573edd8a9.png',\n'images/dde9f3773c1d4cc64f00fb5d5161dcac.png',\n'images/2f827c989cdb97118f9204d0338ae791.png',\n'images/1cb072ac3a48b73ef3a9e69fb244b976.png',\n'images/9f29a5083a17ae471ee255d495ad836f.png';\n\n.field item {\n  .item-back(@cardBackImageUrl);\n}\n\n.make-face-classes(); // run the mixin loop\n/* MIXINS */\n.item-back(@imageUrl) {\n  &:before {\n    background-image: url(@imageUrl);\n  }\n}\n\n.item-face(@imageUrl) {\n  &:before {\n    background-image: url(@imageUrl);\n  }\n}\n\n.make-face-classes(@i: length(@faceImgUrls)) when (@i > 0) {\n  .make-face-classes(@i - 1);\n  @imgUrl: extract(@faceImgUrls, @i);\n  @var: ~'[data-id=\"@{i}\"]';\n  .field item@{var} {\n    .item-face(@imgUrl);\n  }\n}\n","@import \"./images\";\n\nitem {\n  display: flex;\n  width: 100%;\n  height: 100%;\n  transition: transform 1s ease;\n  cursor: pointer;\n\n  &:before,\n  &:after {\n    content: '';\n    width: inherit;\n    height: inherit;\n    position: absolute;\n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: contain;\n    transition: all 500ms ease;\n    border-radius: 0.05rem;\n    box-shadow: 0 0 10px -2px black;\n    border: 0.1rem solid transparent;\n    box-sizing: border-box;\n    backface-visibility: hidden;\n  }\n  &:before {\n    transform: rotateY(-180deg);\n    background-color: black;\n  }\n  &:after {\n    background-color: #bbbbbb;\n    background-image: url(@cardBackImageUrl);\n  }\n  &.open {\n    //transform: scale(0.95);\n    &:before {\n      transform: rotateY(0deg);\n      background-color: #fff;\n    }\n    &:after {\n      transform: rotateY(180deg);\n      background-color: black;\n    }\n  }\n\n  &.hidden {\n    transition: all 300ms ease;\n    transform: rotateX(-90deg);\n    opacity: 0;\n  }\n}\n\n","@import \"../components/field/field\";\n@import \"../components/item/item\";\n\nhtml {\n  font-size: 70px;\n}\n\nhtml,\nbody {\n  height: 100%;\n  background-color: lightgray;\n}\n\n\nbody {\n  margin: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n}\n\n"],"sourceRoot":""}]);
+exports.push([module.i, ".field {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  font-family: 'Baloo Bhaina', cursive;\n}\n.field .row {\n  display: flex;\n  flex-direction: row;\n}\n.field .row .cell {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  perspective: 450px;\n  margin: 0.05rem;\n}\n.field > .row > .cell {\n  width: 1em;\n  height: 1em;\n}\n.field[data-max-size=\"2\"] {\n  font-size: 15vmin;\n}\n.field[data-max-size=\"3\"] {\n  font-size: 15vmin;\n}\n.field[data-max-size=\"4\"] {\n  font-size: 15vmin;\n}\n.field[data-max-size=\"5\"] {\n  font-size: 15vmin;\n}\n.field[data-max-size=\"6\"] {\n  font-size: 13vmin;\n}\n.field[data-max-size=\"7\"] {\n  font-size: 11vmin;\n}\n.field[data-max-size=\"8\"] {\n  font-size: 10vmin;\n}\n.field item:before {\n  background-image: url(" + __webpack_require__(2) + ");\n}\n.field item[data-id=\"1\"]:before {\n  background-image: url(" + __webpack_require__(4) + ");\n}\n.field item[data-id=\"2\"]:before {\n  background-image: url(" + __webpack_require__(5) + ");\n}\n.field item[data-id=\"3\"]:before {\n  background-image: url(" + __webpack_require__(6) + ");\n}\n.field item[data-id=\"4\"]:before {\n  background-image: url(" + __webpack_require__(3) + ");\n}\n.field item[data-id=\"5\"]:before {\n  background-image: url(" + __webpack_require__(7) + ");\n}\n.field item[data-id=\"6\"]:before {\n  background-image: url(" + __webpack_require__(1) + ");\n}\n.field item[data-id=\"7\"]:before {\n  background-image: url(" + __webpack_require__(0) + ");\n}\n.field item[data-id=\"8\"]:before {\n  background-image: url(" + __webpack_require__(26) + ");\n}\n.field item[data-id=\"9\"]:before {\n  background-image: url(" + __webpack_require__(27) + ");\n}\n.field item[data-id=\"10\"]:before {\n  background-image: url(" + __webpack_require__(24) + ");\n}\n.field item[data-id=\"11\"]:before {\n  background-image: url(" + __webpack_require__(23) + ");\n}\n.field item[data-id=\"12\"]:before {\n  background-image: url(" + __webpack_require__(25) + ");\n}\n/* MIXINS */\nitem {\n  display: flex;\n  width: 100%;\n  height: 100%;\n  transition: transform 1s ease;\n  cursor: pointer;\n}\nitem:before,\nitem:after {\n  content: '';\n  width: inherit;\n  height: inherit;\n  position: absolute;\n  background-repeat: no-repeat;\n  background-position: center center;\n  background-size: contain;\n  transition: all 500ms ease;\n  border-radius: 0.05rem;\n  box-shadow: 0 0 10px -2px black;\n  border: 0.1rem solid transparent;\n  box-sizing: border-box;\n  backface-visibility: hidden;\n}\nitem:before {\n  transform: rotateY(-180deg);\n  background-color: black;\n}\nitem:after {\n  background-color: #bbbbbb;\n  background-image: url(" + __webpack_require__(2) + ");\n}\nitem.open:before {\n  transform: rotateY(0deg);\n  background-color: #fff;\n}\nitem.open:after {\n  transform: rotateY(180deg);\n  background-color: black;\n}\nitem.hidden {\n  transition: all 300ms ease;\n  transform: rotateX(-90deg);\n  opacity: 0;\n}\n.timer {\n  font-family: 'Baloo Bhaina', cursive;\n  line-height: 1em;\n}\nhtml {\n  font-size: 70px;\n}\nhtml,\nbody {\n  height: 100%;\n  background-color: lightgray;\n}\nbody {\n  margin: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n}\n", "", {"version":3,"sources":["B:/Projects/pairs/app/styles/B:/Projects/pairs/app/components/field/field.less","B:/Projects/pairs/app/styles/index.less","B:/Projects/pairs/app/styles/B:/Projects/pairs/app/components/field/field.adaptive.less","B:/Projects/pairs/app/styles/B:/Projects/pairs/app/components/item/images.less","B:/Projects/pairs/app/styles/B:/Projects/pairs/app/components/item/item.less","B:/Projects/pairs/app/styles/B:/Projects/pairs/app/components/timer/timer.less","B:/Projects/pairs/app/styles/B:/Projects/pairs/app/styles/index.less"],"names":[],"mappings":"AAAA;EACE,cAAA;EACA,uBAAA;EACA,oBAAA;EAEA,qCAAA;CCCD;ADND;EAQI,cAAA;EACA,oBAAA;CCCH;ADVD;EAWM,cAAA;EACA,oBAAA;EACA,wBAAA;EAEA,mBAAA;EACA,gBAAA;CCCL;ADID;EACE,WAAA;EACA,YAAA;CCFD;ACdC;EACE,kBAAA;CDgBH;ACjBC;EACE,kBAAA;CDmBH;ACpBC;EACE,kBAAA;CDsBH;ACvBC;EACE,kBAAA;CDyBH;AC1BC;EACE,kBAAA;CD4BH;AC7BC;EACE,kBAAA;CD+BH;AChCC;EACE,kBAAA;CDkCH;AEpBC;EACE,gDAAA;CFsBH;AEjBC;EACE,gDAAA;CFmBH;AEpBC;EACE,gDAAA;CFsBH;AEvBC;EACE,gDAAA;CFyBH;AE1BC;EACE,gDAAA;CF4BH;AE7BC;EACE,gDAAA;CF+BH;AEhCC;EACE,gDAAA;CFkCH;AEnCC;EACE,gDAAA;CFqCH;AEtCC;EACE,gDAAA;CFwCH;AEzCC;EACE,gDAAA;CF2CH;AE5CC;EACE,iDAAA;CF8CH;AE/CC;EACE,iDAAA;CFiDH;AElDC;EACE,iDAAA;CFoDH;AACD,YAAY;AGhFZ;EACE,cAAA;EACA,YAAA;EACA,aAAA;EACA,8BAAA;EACA,gBAAA;CHkFD;AGhFC;;EAEE,YAAA;EACA,eAAA;EACA,gBAAA;EACA,mBAAA;EACA,6BAAA;EACA,mCAAA;EACA,yBAAA;EACA,2BAAA;EACA,uBAAA;EACA,gCAAA;EACA,iCAAA;EACA,uBAAA;EACA,4BAAA;CHkFH;AGhFC;EACE,4BAAA;EACA,wBAAA;CHkFH;AGhFC;EACE,0BAAA;EACA,iDAAA;CHkFH;AG9EG;EACE,yBAAA;EACA,uBAAA;CHgFL;AG9EG;EACE,2BAAA;EACA,wBAAA;CHgFL;AG5EC;EACE,2BAAA;EACA,2BAAA;EACA,WAAA;CH8EH;AI9HD;EACE,qCAAA;EACA,iBAAA;CJgID;AK3HD;EACE,gBAAA;CL6HD;AK1HD;;EAEE,aAAA;EACA,4BAAA;CL4HD;AKxHD;EACE,UAAA;EACA,cAAA;EACA,oBAAA;EACA,wBAAA;EACA,uBAAA;CL0HD","file":"index.less","sourcesContent":[".field {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n\n  font-family: 'Baloo Bhaina', cursive;\n\n  .row {\n    display: flex;\n    flex-direction: row;\n    .cell {\n      display: flex;\n      align-items: center;\n      justify-content: center;\n\n      perspective: 450px;\n      margin: 0.05rem;\n    }\n  }\n}\n\n.field > .row > .cell {\n  width: 1em;\n  height: 1em;\n}\n\n@import \"field.adaptive.less\";\n","@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina');\n.field {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  font-family: 'Baloo Bhaina', cursive;\n}\n.field .row {\n  display: flex;\n  flex-direction: row;\n}\n.field .row .cell {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  perspective: 450px;\n  margin: 0.05rem;\n}\n.field > .row > .cell {\n  width: 1em;\n  height: 1em;\n}\n.field[data-max-size=\"2\"] {\n  font-size: 15vmin;\n}\n.field[data-max-size=\"3\"] {\n  font-size: 15vmin;\n}\n.field[data-max-size=\"4\"] {\n  font-size: 15vmin;\n}\n.field[data-max-size=\"5\"] {\n  font-size: 15vmin;\n}\n.field[data-max-size=\"6\"] {\n  font-size: 13vmin;\n}\n.field[data-max-size=\"7\"] {\n  font-size: 11vmin;\n}\n.field[data-max-size=\"8\"] {\n  font-size: 10vmin;\n}\n.field item:before {\n  background-image: url('../components/item/images/a0948a70a8cf4ca9e611d7047c2fde13.png');\n}\n.field item[data-id=\"1\"]:before {\n  background-image: url('../components/item/images/e10c30fde767f8e6b9778f29c7020daa.png');\n}\n.field item[data-id=\"2\"]:before {\n  background-image: url('../components/item/images/edff9778698ea291b3f8b696eaa312a7.png');\n}\n.field item[data-id=\"3\"]:before {\n  background-image: url('../components/item/images/f3eddd01374ae11acc60554afb78a291.png');\n}\n.field item[data-id=\"4\"]:before {\n  background-image: url('../components/item/images/adceea049986061e64d9ddda49e19ac3.png');\n}\n.field item[data-id=\"5\"]:before {\n  background-image: url('../components/item/images/f5892f9fb88691bbfc0685284ee6d0a0.png');\n}\n.field item[data-id=\"6\"]:before {\n  background-image: url('../components/item/images/80ef858b870ff16fb3aad66955bd44ea.png');\n}\n.field item[data-id=\"7\"]:before {\n  background-image: url('../components/item/images/0dac2944ab9ab6523ed53b750ba07d74.png');\n}\n.field item[data-id=\"8\"]:before {\n  background-image: url('../components/item/images/af7c07d3fc4b0d8b93de8c5573edd8a9.png');\n}\n.field item[data-id=\"9\"]:before {\n  background-image: url('../components/item/images/dde9f3773c1d4cc64f00fb5d5161dcac.png');\n}\n.field item[data-id=\"10\"]:before {\n  background-image: url('../components/item/images/2f827c989cdb97118f9204d0338ae791.png');\n}\n.field item[data-id=\"11\"]:before {\n  background-image: url('../components/item/images/1cb072ac3a48b73ef3a9e69fb244b976.png');\n}\n.field item[data-id=\"12\"]:before {\n  background-image: url('../components/item/images/9f29a5083a17ae471ee255d495ad836f.png');\n}\n/* MIXINS */\nitem {\n  display: flex;\n  width: 100%;\n  height: 100%;\n  transition: transform 1s ease;\n  cursor: pointer;\n}\nitem:before,\nitem:after {\n  content: '';\n  width: inherit;\n  height: inherit;\n  position: absolute;\n  background-repeat: no-repeat;\n  background-position: center center;\n  background-size: contain;\n  transition: all 500ms ease;\n  border-radius: 0.05rem;\n  box-shadow: 0 0 10px -2px black;\n  border: 0.1rem solid transparent;\n  box-sizing: border-box;\n  backface-visibility: hidden;\n}\nitem:before {\n  transform: rotateY(-180deg);\n  background-color: black;\n}\nitem:after {\n  background-color: #bbbbbb;\n  background-image: url('../components/item/images/a0948a70a8cf4ca9e611d7047c2fde13.png');\n}\nitem.open:before {\n  transform: rotateY(0deg);\n  background-color: #fff;\n}\nitem.open:after {\n  transform: rotateY(180deg);\n  background-color: black;\n}\nitem.hidden {\n  transition: all 300ms ease;\n  transform: rotateX(-90deg);\n  opacity: 0;\n}\n.timer {\n  font-family: 'Baloo Bhaina', cursive;\n  line-height: 1em;\n}\nhtml {\n  font-size: 70px;\n}\nhtml,\nbody {\n  height: 100%;\n  background-color: lightgray;\n}\nbody {\n  margin: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n}\n","@fieldSize: 80vmin;\n@maxSize: 15vmin;\n.max-size-classes(8);\n\n.max-size-classes(@i) when (@i > 1) {\n  .max-size-classes(@i - 1);\n  @dataAttr: ~'[data-max-size=\"@{i}\"]';\n  .field@{dataAttr} {\n    font-size: min(floor(@fieldSize / @i), @maxSize);\n  }\n}\n","@cardBackImageUrl: 'images/a0948a70a8cf4ca9e611d7047c2fde13.png';\n\n@faceImgUrls: 'images/e10c30fde767f8e6b9778f29c7020daa.png',\n'images/edff9778698ea291b3f8b696eaa312a7.png',\n'images/f3eddd01374ae11acc60554afb78a291.png',\n'images/adceea049986061e64d9ddda49e19ac3.png',\n'images/f5892f9fb88691bbfc0685284ee6d0a0.png',\n'images/80ef858b870ff16fb3aad66955bd44ea.png',\n'images/0dac2944ab9ab6523ed53b750ba07d74.png',\n'images/af7c07d3fc4b0d8b93de8c5573edd8a9.png',\n'images/dde9f3773c1d4cc64f00fb5d5161dcac.png',\n'images/2f827c989cdb97118f9204d0338ae791.png',\n'images/1cb072ac3a48b73ef3a9e69fb244b976.png',\n'images/9f29a5083a17ae471ee255d495ad836f.png';\n\n.field item {\n  .item-back(@cardBackImageUrl);\n}\n\n.make-face-classes(); // run the mixin loop\n/* MIXINS */\n.item-back(@imageUrl) {\n  &:before {\n    background-image: url(@imageUrl);\n  }\n}\n\n.item-face(@imageUrl) {\n  &:before {\n    background-image: url(@imageUrl);\n  }\n}\n\n.make-face-classes(@i: length(@faceImgUrls)) when (@i > 0) {\n  .make-face-classes(@i - 1);\n  @imgUrl: extract(@faceImgUrls, @i);\n  @var: ~'[data-id=\"@{i}\"]';\n  .field item@{var} {\n    .item-face(@imgUrl);\n  }\n}\n","@import \"./images\";\n\nitem {\n  display: flex;\n  width: 100%;\n  height: 100%;\n  transition: transform 1s ease;\n  cursor: pointer;\n\n  &:before,\n  &:after {\n    content: '';\n    width: inherit;\n    height: inherit;\n    position: absolute;\n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: contain;\n    transition: all 500ms ease;\n    border-radius: 0.05rem;\n    box-shadow: 0 0 10px -2px black;\n    border: 0.1rem solid transparent;\n    box-sizing: border-box;\n    backface-visibility: hidden;\n  }\n  &:before {\n    transform: rotateY(-180deg);\n    background-color: black;\n  }\n  &:after {\n    background-color: #bbbbbb;\n    background-image: url(@cardBackImageUrl);\n  }\n  &.open {\n    //transform: scale(0.95);\n    &:before {\n      transform: rotateY(0deg);\n      background-color: #fff;\n    }\n    &:after {\n      transform: rotateY(180deg);\n      background-color: black;\n    }\n  }\n\n  &.hidden {\n    transition: all 300ms ease;\n    transform: rotateX(-90deg);\n    opacity: 0;\n  }\n}\n\n",".timer{\n  font-family: 'Baloo Bhaina', cursive;\n  line-height: 1em;\n}\n","@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina');\n\n@import \"../components/field/field\";\n@import \"../components/item/item\";\n@import \"../components/timer/timer\";\n\n\nhtml {\n  font-size: 70px;\n}\n\nhtml,\nbody {\n  height: 100%;\n  background-color: lightgray;\n}\n\n\nbody {\n  margin: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n}\n\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -3261,6 +3261,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_field_fieldSize_service__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_field_field__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_getRandomInt__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_getLevelTimeout__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_timer_timer__ = __webpack_require__(37);
 
 const imageCount = 12;
 
@@ -3270,7 +3272,55 @@ const imageCount = 12;
 
 
 
-__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__components_field_fieldSize_service__["a" /* getFieldSize */])().then(getPairs).then(drawField);
+
+
+
+__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__components_field_fieldSize_service__["a" /* getFieldSize */])()
+	.then(getPairs)
+	.then(drawField)
+	.then(setTimer)
+	.then(win)
+	.catch(fail);
+
+
+function fail() {
+	$('.timer').text('😰 you failed 💩 🤡');
+}
+
+function win() {
+	$('.timer').text('😺 👑 you won ✊')
+}
+
+
+function setTimer(data) {
+	return new Promise(function (resolve, reject) {
+
+		const pairCount = data.size.width * data.size.height;
+		const timeout = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_getLevelTimeout__["a" /* getLevelTimeout */])(pairCount);
+
+		const timer = new __WEBPACK_IMPORTED_MODULE_5__components_timer_timer__["a" /* Timer */](timeout);
+
+		function getLastTwo(number) {
+			return number < 10 ? '0' + number : number;
+		}
+
+		timer.addEventListener('tick', (time) => {
+			const dateTime = new Date(time);
+			$('.timer').text(`${ getLastTwo(dateTime.getMinutes())} : ${ getLastTwo(dateTime.getSeconds()) } `);
+
+
+			if($('.field item:not(.hidden)').length===0){
+				resolve();
+				timer.stop();
+			}
+		});
+
+		timer.addEventListener('stop', (time) => {
+			reject();
+		});
+
+	});
+}
 
 
 function getPairs(size) {
@@ -3294,11 +3344,10 @@ function getPairs(size) {
 }
 
 function drawField(data) {
-
 	let field = new __WEBPACK_IMPORTED_MODULE_2__components_field_field__["a" /* Field */](data.size);
-
 	field.draw(data.pairs);
 
+	return data;
 }
 
 let selectedPairs = [];
@@ -3339,6 +3388,83 @@ function selectItem(event) {
 document.querySelector('.field').addEventListener('click', selectItem);
 
 
+
+
+/***/ }),
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const tickInterval = 30;
+
+class Timer {
+	constructor(timeout) {
+		this._eventListeners = {};
+		this.start(timeout);
+	}
+
+	start(value) {
+		this.basicTime = this.currentTime = new Date();
+		this.timeout = value * 1000;//seconds
+
+		this.intervalId = setInterval(() => {
+			if (this.timeLeft > 0) {
+				if (new Date() - this.currentTime > 1000) {
+					this.currentTime = new Date();
+					this.emit('tick', this.timeLeft);
+				}
+			} else {
+				this.stop();
+			}
+		}, tickInterval);
+
+		this.emit('start', this.timeLeft);
+	}
+
+
+	get timeLeft() {
+		return Math.max(this.timeout - (this.currentTime - this.basicTime), 0);
+	}
+
+
+	stop() {
+		clearInterval(this.intervalId);
+		this.emit('stop', this.timeLeft);
+	}
+
+	getEventListeners(event) {
+		return this._eventListeners[event] = this._eventListeners[event] || [];
+	}
+
+	addEventListener(event, callback) {
+		this.getEventListeners(event).push(callback);
+	}
+
+	emit(event, data) {
+		this.getEventListeners(event).forEach(handler => handler(data));
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Timer;
+
+
+
+
+/***/ }),
+/* 38 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = getLevelTimeout;
+function getLevelTimeout(itemCount) {
+	return itemCount * 1.8;
+}
 
 
 /***/ })
