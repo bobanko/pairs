@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  font-family: 'Baloo Bhaina', cursive;
+
   .row {
     display: flex;
     flex-direction: row;
@@ -21,14 +24,4 @@
   height: 1em;
 }
 
-
-@fieldSize: 80vmin;
-.max-size-classes(8);
-
-.max-size-classes(@i) when (@i > 1) {
-  .max-size-classes(@i - 1);
-  @dataAttr: ~'[data-max-size="@{i}"]';
-  .field@{dataAttr} {
-    font-size: floor(@fieldSize / @i);
-  }
-}
+@import "field.adaptive.less";

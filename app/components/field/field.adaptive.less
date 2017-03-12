@@ -1,0 +1,11 @@
+@fieldSize: 80vmin;
+@maxSize: 15vmin;
+.max-size-classes(8);
+
+.max-size-classes(@i) when (@i > 1) {
+  .max-size-classes(@i - 1);
+  @dataAttr: ~'[data-max-size="@{i}"]';
+  .field@{dataAttr} {
+    font-size: min(floor(@fieldSize / @i), @maxSize);
+  }
+}
