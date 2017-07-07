@@ -15,15 +15,17 @@ getFieldSize()
 	.then(drawField)
 	.then(setTimer)
 	.then(win)
-	.catch(fail);
+	.catch(fail)
+	.then(()=>console.log('afterfail'));
 
 
 function fail() {
-	$('.timer').text('😰 you failed 💩 🤡');
+	$('.timer').text('you failed 😰');
+	return Promise.resolve();
 }
 
 function win() {
-	$('.timer').text('😺 👑 you won ✊')
+	$('.timer').text('you won 👑 ✊')
 }
 
 
