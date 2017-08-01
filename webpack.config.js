@@ -2,6 +2,7 @@
 
 const webpack = require('webpack');// need to be installed locally npm i webpack
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const extractLESS = new ExtractTextPlugin('[name].css');
 
@@ -14,32 +15,23 @@ module.exports = {
 		chat: './app/js/chat',
 	}, //base js file path
 	output: {
-		path: './build/',
-		publicPath: './build/',
-		filename: '[name].js',
-		library: '[name]',
+		//path: '/dist/',
+		//publicPath: './dist/',
+		//library: '[name]',
+
+		filename: 'dist/[name].bundle.js',
+		//path: path.resolve(__dirname, 'dist')
 	},
 
-	watch: true,
+	// watch: true,
+	//
+	// watchOptions: {
+	// 	aggregateTimeout: 100 //wait after changes //300 default
+	// },
 
-	watchOptions: {
-		aggregateTimeout: 100 //wait after changes //300 default
-	},
-
-	devtool: 'source-map',
-
-	resolveLoader: {
-		modules: ["node_modules"],
-		moduleExtensions: ['-loader'],
-		extensions: ["*", ".js"]
-	},
 
 	module: {
 		rules: [
-			// {
-			// 	test: /\.less$/i,
-			// 	use: extractLESS.extract(['css-loader', 'less-loader'])
-			// },
 			{
 				test: /\.less$/,
 				use: [{
@@ -71,11 +63,18 @@ module.exports = {
 
 	plugins: [
 		//extractLESS
+		new webpack.HotModuleReplacementPlugin(),
+		new HtmlWebpackPlugin({
+			title: 'Output Management',
+			template: './app/index.html',
+		})
 	],
 
 	devServer: {
-		host: 'localhost', //default
-		port: 8080 //default
+		//host: 'localhost', //default
+		//port: 8080, //default
+		contentBase: './dist',
+		hot: true,
 	}
 
 };
