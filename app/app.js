@@ -3,6 +3,8 @@ const imageCount = 12;
 
 import './styles/index.less';
 
+import $ from 'jquery';
+
 import {getFieldSize} from './components/field/fieldSize.service';
 import {Field} from './components/field/field';
 import {getRandomInt} from './helpers/getRandomInt';
@@ -16,7 +18,7 @@ getFieldSize()
 	.then(setTimer)
 	.then(win)
 	.catch(fail)
-	.then(()=>console.log('afterfail'));
+	.then(() => console.log('afterfail'));
 
 
 function fail() {
@@ -46,7 +48,7 @@ function setTimer(data) {
 			$('.timer').text(`${ getLastTwo(dateTime.getMinutes())} : ${ getLastTwo(dateTime.getSeconds()) } `);
 
 
-			if($('.field item:not(.hidden)').length===0){
+			if ($('.field item:not(.hidden)').length === 0) {
 				resolve();
 				timer.stop();
 			}

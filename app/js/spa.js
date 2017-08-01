@@ -1,4 +1,6 @@
 "use strict";
+import $ from 'jquery';
+
 $('a.link').on('click', function (event) {
 	event.preventDefault();
 

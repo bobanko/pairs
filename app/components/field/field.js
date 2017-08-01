@@ -1,4 +1,5 @@
 import {Item} from '../item/item';
+import $ from 'jquery';
 
 export class Field {
 
