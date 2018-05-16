@@ -1,16 +1,15 @@
-'use strict';
+"use strict";
 const imageCount = 12;
 
-import './styles/index.less';
+import "./styles/index.less";
 
-import $ from 'jquery';
+import $ from "jquery";
 
-import {getFieldSize} from './components/field/fieldSize.service';
-import {Field} from './components/field/field';
-import {getRandomInt} from './helpers/getRandomInt';
-import {getLevelTimeout} from './helpers/getLevelTimeout';
-import {Timer} from './components/timer/timer';
-
+import { getFieldSize } from "./components/field/fieldSize.service";
+import { Field } from "./components/field/field";
+import { getRandomInt } from "./helpers/getRandomInt";
+import { getLevelTimeout } from "./helpers/getLevelTimeout";
+import { Timer } from "./components/timer/timer";
 
 getFieldSize()
 	.then(getPairs)
@@ -18,52 +17,49 @@ getFieldSize()
 	.then(setTimer)
 	.then(win)
 	.catch(fail)
-	.then(() => console.log('afterfail'));
-
+	.then(() => console.log("afterfail"));
 
 function fail() {
-	$('.timer').text('you failed 😰');
+	$(".timer").text("you failed 😰");
 	return Promise.resolve();
 }
 
 function win() {
-	$('.timer').text('you won 👑 ✊')
+	$(".timer").text("you won 👑 ✊");
 }
 
-
 function setTimer(data) {
-	return new Promise(function (resolve, reject) {
-
+	return new Promise(function(resolve, reject) {
 		const pairCount = data.size.width * data.size.height;
 		const timeout = getLevelTimeout(pairCount);
 
 		const timer = new Timer(timeout);
 
 		function getLastTwo(number) {
-			return number < 10 ? '0' + number : number;
+			return number < 10 ? "0" + number : number;
 		}
 
-		timer.addEventListener('tick', (time) => {
+		timer.addEventListener("tick", time => {
 			const dateTime = new Date(time);
-			$('.timer').text(`${ getLastTwo(dateTime.getMinutes())} : ${ getLastTwo(dateTime.getSeconds()) } `);
+			$(".timer").text(
+				`${getLastTwo(dateTime.getMinutes())} : ${getLastTwo(
+					dateTime.getSeconds()
+				)} `
+			);
 
-
-			if ($('.field item:not(.hidden)').length === 0) {
+			if ($(".field item:not(.hidden)").length === 0) {
 				resolve();
 				timer.stop();
 			}
 		});
 
-		timer.addEventListener('stop', (time) => {
+		timer.addEventListener("stop", time => {
 			reject();
 		});
-
 	});
 }
 
-
 function getPairs(size) {
-
 	//size = {width: 8, height: 8};//todo: stub
 
 	let pairCount = size.width * size.height / 2;
@@ -78,8 +74,7 @@ function getPairs(size) {
 
 	size.pairs = pairs;
 
-
-	return {size: size, pairs: pairs};
+	return { size: size, pairs: pairs };
 }
 
 function drawField(data) {
@@ -92,31 +87,35 @@ function drawField(data) {
 let selectedPairs = [];
 
 function selectItem(event) {
-	if (event.target.tagName === 'ITEM') {
+	if (event.target.tagName === "ITEM") {
 		let element = event.target;
 
 		let elementIndex = selectedPairs.indexOf(element);
 		if (elementIndex >= 0) {
-			$(element).toggleClass('open', false);
+			$(element).toggleClass("open", false);
 			selectedPairs.splice(elementIndex, 1);
 			return;
 		}
 
 		selectedPairs.push(element);
-		$(element).toggleClass('open', true);
+		$(element).toggleClass("open", true);
 
 		//second item opened - check both and decide
 		if (selectedPairs.length === 2) {
 			let isSame = selectedPairs
-				.map((element) => $(element).data('id'))
+				.map(element => $(element).data("id"))
 				.reduce((a, b) => {
 					return a === b;
 				});
 
 			if (isSame) {
-				selectedPairs.forEach(e => setTimeout(() => $(e).toggleClass('hidden'), 500));
+				selectedPairs.forEach(e =>
+					setTimeout(() => $(e).toggleClass("hidden"), 500)
+				);
 			} else {
-				selectedPairs.forEach(e => setTimeout(() => $(e).toggleClass('open', false), 500));
+				selectedPairs.forEach(e =>
+					setTimeout(() => $(e).toggleClass("open", false), 500)
+				);
 			}
 			//clear pairs arr
 			selectedPairs.length = 0;
@@ -124,6 +123,4 @@ function selectItem(event) {
 	}
 }
 
-document.querySelector('.field').addEventListener('click', selectItem);
-
-
+document.querySelector(".field").addEventListener("click", selectItem);

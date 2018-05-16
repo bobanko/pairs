@@ -1,21 +1,22 @@
 {
   "name": "pairs",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "private": true,
   "scripts": {
-    "build": "webpack",
-    "server": "node_modules\\.bin\\webpack-dev-server"
+    "build": "npx webpack",
+    "server": "webpack-dev-server --hot"
   },
   "devDependencies": {
-    "css-loader": "^0.28.4",
-    "extract-text-webpack-plugin": "^3.0.0",
-    "file-loader": "^0.10.1",
-    "html-webpack-plugin": "^2.30.1",
-    "less": "^2.7.2",
-    "less-loader": "^3.0.0",
-    "style-loader": "^0.13.2",
-    "url-loader": "^0.5.8",
-    "webpack": "^3.4.1",
-    "webpack-dev-server": "^2.6.1"
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^2.7.3",
+    "less-loader": "^4.1.0",
+    "style-loader": "^0.21.0",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3",
+    "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
     "jquery": "^3.2.1"
