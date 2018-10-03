@@ -66,8 +66,6 @@ function setTimer(data) {
 }
 
 function getPairs(size) {
-  //size = {width: 8, height: 8};//todo: stub
-
   let pairCount = (size.width * size.height) / 2;
 
   let pairs = [];
