@@ -1,9 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina');
+@import url("https://fonts.googleapis.com/css?family=Baloo+Bhaina");
 
-@import "../components/field/field";
-@import "../components/item/item";
-@import "../components/timer/timer";
-
+@import "../components/timer/timer.scss";
 
 html {
   font-size: 70px;
@@ -15,7 +12,6 @@ body {
   background-color: lightgray;
 }
 
-
 body {
   margin: 0;
   display: flex;
@@ -23,4 +19,3 @@ body {
   justify-content: center;
   flex-direction: column;
 }
-

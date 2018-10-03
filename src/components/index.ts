@@ -1,33 +1,14 @@
-"use strict";
 const imageCount = 12;
-
-import "./styles/index.less";
 
 import $ from "jquery";
 
-import { Field } from "./components/field/field";
-import { getRandomInt } from "./helpers/getRandomInt";
-import { getLevelTimeout } from "./helpers/getLevelTimeout";
-import { Timer } from "./components/timer/timer";
-
-function getFieldSize() {
-  const fieldSize = 4;
-  const size = { width: fieldSize, height: fieldSize };
-  return Promise.resolve(size);
-}
-
-Promise.resolve()
-  .then(getFieldSize)
-  .then(getPairs)
-  .then(drawField)
-  .then(setTimer)
-  .then(win)
-  .catch(fail)
-  .then(() => console.log("afterfail"));
+import { getRandomInt } from "../helpers/getRandomInt";
+import { getLevelTimeout } from "../helpers/getLevelTimeout";
+import { Timer } from "./timer/timer";
+import { Item } from "../types";
 
 function fail() {
   $(".timer").text("you failed 😰");
-  return Promise.resolve();
 }
 
 function win() {
@@ -65,25 +46,9 @@ function setTimer(data) {
   });
 }
 
-function getPairs(size) {
-  let pairCount = (size.width * size.height) / 2;
-
-  let pairs = [];
-  for (let i = 0; i < pairCount; i++) {
-    pairs.push(getRandomInt(1, imageCount));
-  }
-
-  pairs = pairs.concat(pairs);
-  pairs.sort((a, b) => getRandomInt(0, 1));
-
-  size.pairs = pairs;
-
-  return { size: size, pairs: pairs };
-}
-
 function drawField(data) {
-  let field = new Field(data.size);
-  field.draw(data.pairs);
+  //let field = new Field(data.size);
+  //field.draw(data.pairs);
 
   return data;
 }
@@ -113,12 +78,12 @@ function selectItem(event) {
         });
 
       if (isSame) {
-        selectedPairs.forEach(e =>
-          setTimeout(() => $(e).toggleClass("hidden"), 500)
+        selectedPairs.forEach(cell =>
+          setTimeout(() => $(cell).toggleClass("hidden"), 500)
         );
       } else {
-        selectedPairs.forEach(e =>
-          setTimeout(() => $(e).toggleClass("open", false), 500)
+        selectedPairs.forEach(cell =>
+          setTimeout(() => $(cell).toggleClass("open", false), 500)
         );
       }
       //clear pairs arr
@@ -127,4 +92,16 @@ function selectItem(event) {
   }
 }
 
-document.querySelector(".field").addEventListener("click", selectItem);
+export function generateItems({ width, height }): Array<Item> {
+  let pairCount = (width * height) / 2;
+
+  let imageIds: Array<number> = [];
+  for (let i = 0; i < pairCount; i++) {
+    imageIds.push(getRandomInt(1, imageCount));
+  }
+
+  imageIds = imageIds.concat(imageIds);
+  imageIds.sort(() => getRandomInt(0, 1));
+
+  return imageIds.map((imageId, id) => ({ id, imageId, isOpen: false }));
+}

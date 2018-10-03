@@ -43,6 +43,14 @@ module.exports = {
         use: "ts-loader"
       },
       {
+        test: /\.scss$/,
+        use: [
+          devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+          "css-loader",
+          "sass-loader"
+        ]
+      },
+      {
         test: /\.less$/,
         use: [
           devMode ? "style-loader" : MiniCssExtractPlugin.loader,
@@ -73,8 +81,8 @@ module.exports = {
     //host: 'localhost', //default
     //port: 8080, //default
     //port: 9000
-    contentBase: "./dist",
-    compress: true
+    contentBase: "./dist"
+    //compress: true,
     //hot: true
   }
 };

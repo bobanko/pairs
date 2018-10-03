@@ -1,0 +1,8 @@
+$fieldSize: 80vmin;
+$maxSize: 15vmin;
+
+@for $i from 1 through 8 {
+  .field[data-max-size="#{$i}"] {
+    font-size: min(floor($fieldSize / $i), $maxSize);
+  }
+}

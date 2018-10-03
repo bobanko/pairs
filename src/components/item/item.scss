@@ -1,15 +1,22 @@
-@import "./images";
+@import "./images.scss";
 
-item {
+.item {
   display: flex;
-  width: 100%;
-  height: 100%;
+
+  --cell-margin: 5px;
+  --size: calc(var(--cell-size) - var(--cell-margin) * 2);
+
+  width: var(--size);
+  height: var(--size);
+
+  margin: var(--cell-margin);
+
   transition: transform 1s ease;
   cursor: pointer;
 
   &:before,
   &:after {
-    content: '';
+    content: "";
     width: inherit;
     height: inherit;
     position: absolute;
@@ -29,10 +36,9 @@ item {
   }
   &:after {
     background-color: #bbbbbb;
-    background-image: url(@cardBackImageUrl);
+    background-image: url($cardBackImageUrl);
   }
-  &.open {
-    //transform: scale(0.95);
+  &.is-open {
     &:before {
       transform: rotateY(0deg);
       background-color: #fff;
@@ -49,4 +55,3 @@ item {
     opacity: 0;
   }
 }
-

@@ -1,0 +1,26 @@
+:root {
+  --cell-size: 100px;
+}
+
+.field {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+
+  font-family: "Baloo Bhaina", cursive;
+
+  width: calc(
+    4 * var(--cell-size)
+  ); //todo: set width from app, based on item count
+
+  .cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    perspective: 450px;
+  }
+}
+
+@import "field.adaptive.scss";
