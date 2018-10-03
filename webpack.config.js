@@ -5,8 +5,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const devMode = process.env.NODE_ENV !== "production";
 
 module.exports = {
-  //mode: "development",
-  entry: "./src/index.js",
+  mode: "development",
+  entry: "./src/index.tsx",
   output: {
     filename: "[name].[hash].js"
   },
@@ -39,6 +39,10 @@ module.exports = {
         ]
       },
       {
+        test: /\.tsx?$/,
+        use: "ts-loader"
+      },
+      {
         test: /\.less$/,
         use: [
           devMode ? "style-loader" : MiniCssExtractPlugin.loader,
@@ -48,6 +52,9 @@ module.exports = {
       },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
     ]
+  },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
   },
   plugins: [
     new CleanWebpackPlugin(["dist/*"]),
