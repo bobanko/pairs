@@ -1,11 +1,10 @@
 "use strict";
-import $ from 'jquery';
+import $ from "jquery";
 
-$('a.link').on('click', function (event) {
-	event.preventDefault();
+$("a.link").on("click", function(event) {
+  event.preventDefault();
 
-	$('.container').load(this.href);
-
+  $(".container").load(this.href);
 });
 
 /*
