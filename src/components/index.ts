@@ -103,5 +103,10 @@ export function generateItems({ width, height }): Array<Item> {
   imageIds = imageIds.concat(imageIds);
   imageIds.sort(() => getRandomInt(0, 1));
 
-  return imageIds.map((imageId, id) => ({ id, imageId, isOpen: false }));
+  return imageIds.map((imageId, id) => ({
+    id,
+    imageId,
+    isOpen: false,
+    isHidden: false
+  }));
 }

@@ -18,10 +18,6 @@ class Field extends React.Component<Props> {
   }
 
   render() {
-    // return this.props.items.length;
-
-    if (this.props.items.length === 0) return "-";
-
     return (
       <div className="field">
         {this.props.items.map((item, i) => (

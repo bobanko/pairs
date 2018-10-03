@@ -15,7 +15,8 @@ class Component extends React.Component<Props> {
     return (
       <div
         className={classnames("item", "cell", {
-          "is-open": this.props.isOpen
+          "is-open": this.props.isOpen,
+          hidden: this.props.isHidden
         })}
         data-id={this.props.imageId}
         onClick={() => this.props.onClick(this.props.id)}
@@ -27,9 +28,7 @@ class Component extends React.Component<Props> {
 const mapStateToProps = (state, props) => {
   const { items } = state;
 
-  const currentItem = items[props.id];
-
-  return currentItem;
+  return items[props.id];
 };
 
 export default connect(mapStateToProps)(Component);
