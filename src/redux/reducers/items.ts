@@ -1,21 +1,17 @@
 import {
-  START_GAME,
-  GENERATE_ITEMS,
+  SET_ITEMS,
   OPEN_CELL,
   CLOSE_CELL,
   HIDE_CELL,
   SHOW_CELL
-} from "./actions";
+} from "../actions";
 
-import { generateItems } from "../components/index";
-import { Item } from "../types";
+import { Item } from "../../types";
 
 const reducer = (state: Array<Item> = [], action) => {
   switch (action.type) {
-    case GENERATE_ITEMS:
-      return generateItems(action.fieldSize);
-    case START_GAME:
-      return state;
+    case SET_ITEMS:
+      return action.items;
     case OPEN_CELL:
     case CLOSE_CELL:
     case HIDE_CELL:

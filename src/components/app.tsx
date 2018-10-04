@@ -4,53 +4,41 @@ import { connect } from "react-redux";
 import Field from "./field";
 
 import "./index.scss";
-import { generateItems } from "../redux/actions";
+import { Item, State, GameState } from "../types";
 
 type Props = {
-  items: Array<any>;
-  fieldSize: { width: number; height: number };
-  isLoading: boolean;
-  error?: Error;
-
-  generateItems: (size: any) => any;
+  items: Array<Item>;
+  timer: number;
+  gameState: GameState;
 };
 
 class App extends React.Component<Props> {
-  componentDidMount() {
-    this.props.generateItems({ width: 5, height: 4 });
-  }
-
   render() {
+    const { gameState } = this.props;
+
     return (
       <>
-        <div className="countdown" />
+        <div className="game-state">
+          {gameState === GameState.PLAY && this.props.timer}
+          {gameState === GameState.WIN && "👑 you won ✊"}
+          {gameState === GameState.FAIL && "you failed 😰"}
+        </div>
 
-        <Field items={this.props.items} fieldSize={this.props.fieldSize} />
-
+        <Field items={this.props.items} />
         <div className="controls" />
       </>
     );
   }
 }
 
-const mapStateToProps = state => {
-  const { items, fieldSize } = state;
+const mapStateToProps = (state: State) => {
+  const { items, timer, gameState } = state;
 
   return {
     items,
-    fieldSize
+    timer,
+    gameState
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    generateItems: size => {
-      dispatch(generateItems(size));
-    }
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default connect(mapStateToProps)(App);

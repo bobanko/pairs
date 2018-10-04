@@ -8,7 +8,6 @@ import { flipCell } from "../../redux/actions";
 
 type Props = {
   items: Array<number>;
-  fieldSize: { width: number; height: number };
   flipCell: (id: number) => void;
 };
 

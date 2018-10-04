@@ -7,20 +7,29 @@ import {
   openCell,
   closeCell,
   winGame,
-  failGame
+  failGame,
+  setScore,
+  setItems,
+  timerTick,
+  timerStop,
+  timerStart,
+  startGame
 } from "../actions";
-import { getItemById } from "../selectors";
-import { Item } from "../../types";
-import { State } from "..";
+import {
+  getItemById,
+  getScore,
+  getItemsCount,
+  getHiddenItemsCount
+} from "../selectors";
+import { Item, State } from "../../types";
 
-export function* helloSaga() {
-  console.log("Hello Sagas!");
-}
+function* takeTwoSaga() {
+  console.log("taketwosaga started");
 
-export function* takeTwoSaga() {
-  console.log("taketwosaga start");
-  let score = 0;
-  while (true) {
+  //pair count
+  const itemsCount = yield select<State>(getItemsCount);
+  let hiddenItemsCount;
+  do {
     let action1 = yield take(FLIP_CELL);
     let item1: Item = yield select<State>(getItemById(action1.id));
     console.log("first", item1);
@@ -41,7 +50,8 @@ export function* takeTwoSaga() {
       yield call(delay, timeout);
       yield put(hideCell(item1.id));
       yield put(hideCell(item2.id));
-      score++;
+
+      yield put(setScore((yield select<State>(getScore)) + 1));
     } else {
       yield put(openCell(item2.id));
       console.log("diff");
@@ -50,22 +60,38 @@ export function* takeTwoSaga() {
       yield put(closeCell(item2.id));
       //console.log("flip both done?");
     }
-  } //while
+    hiddenItemsCount = yield select<State>(getHiddenItemsCount);
+    console.log(hiddenItemsCount);
+  } while (hiddenItemsCount < itemsCount);
 
-  return score;
+  return yield select<State>(getScore);
 }
 
-export function* rootSaga() {
-  yield takeTwoSaga(); // game(getState); // all([game, fork(helloSaga)]);
+function* timerSaga(timeout) {
+  yield put(timerStart(timeout));
+
+  for (let timeLeft = timeout; timeLeft > 0; timeLeft--) {
+    yield put(timerTick(timeLeft));
+    yield call(delay, 1000);
+  }
+  yield put(timerTick(0));
+  yield put(timerStop());
+  return true;
 }
 
-function* game(getState) {
+function* gameLoopSaga() {
+  console.log("game started");
+  const itemPairCount = 10; //todo: increase?
+  let newItems = generateItems(itemPairCount);
+
+  yield put(setItems(newItems));
+  yield put(startGame());
   let finished = false;
   while (!finished) {
     // has to finish in 60 seconds
     const { score, timeout } = yield race({
-      score: call(takeTwoSaga, getState),
-      timeout: call(delay, 60 * 1000)
+      score: call(takeTwoSaga),
+      timeout: call(timerSaga, itemPairCount * 5) //todo: somehow call tick
     });
 
     if (!timeout) {
@@ -73,8 +99,37 @@ function* game(getState) {
       console.log("win", score);
       yield put(winGame());
     } else {
+      finished = true;
       console.log("fail", score);
       yield put(failGame());
     }
   }
 }
+
+export function* rootSaga() {
+  yield gameLoopSaga();
+  console.log("end root");
+}
+
+//=====================EXTRACT?=========================
+
+const imageCount = 12;
+export function generateItems(pairAmount): Array<Item> {
+  let imageIds: Array<number> = [];
+  for (let i = 0; i < pairAmount; i++) {
+    imageIds.push(getRandomInt(1, imageCount));
+  }
+
+  imageIds = imageIds.concat(imageIds);
+  imageIds.sort(() => getRandomInt(0, 1));
+
+  return imageIds.map((imageId, id) => ({
+    id,
+    imageId,
+    isOpen: false,
+    isHidden: false
+  }));
+}
+
+const getRandomInt = (min, max): number =>
+  min + Math.floor(Math.random() * (max - min + 1));

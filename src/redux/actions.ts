@@ -8,12 +8,17 @@ export const MATCH = "MATCH";
 
 export const WIN = "WIN";
 export const FAIL = "FAIL";
-export const SCORE = "SCORE";
+
+export const SET_SCORE = "SET_SCORE";
+
+export const TIMER_START = "TIMER_START";
+export const TIMER_TICK = "TIMER_TICK";
+export const TIMER_STOP = "TIMER_STOP";
 
 export const END_GAME = "END_GAME";
 export const START_GAME = "START_GAME";
 
-export const GENERATE_ITEMS = "GENERATE_ITEMS";
+export const SET_ITEMS = "SET_ITEMS";
 
 export const flipCell = (id: number) => ({
   type: FLIP_CELL,
@@ -40,9 +45,32 @@ export const showCell = (id: number) => ({
   id
 });
 
-export const generateItems = fieldSize => ({
-  type: GENERATE_ITEMS,
-  fieldSize
+export const setItems = items => ({
+  type: SET_ITEMS,
+  items
+});
+
+export const setScore = value => ({
+  type: SET_SCORE,
+  value
+});
+
+export const timerStart = value => ({
+  type: TIMER_START,
+  value
+});
+
+export const timerTick = value => ({
+  type: TIMER_TICK,
+  value
+});
+
+export const timerStop = () => ({
+  type: TIMER_STOP
+});
+
+export const startGame = () => ({
+  type: START_GAME
 });
 
 export const winGame = () => ({

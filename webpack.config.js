@@ -58,7 +58,7 @@ module.exports = {
           "less-loader"
         ]
       },
-      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+      { enforce: "pre", test: /\.tsx?$/, loader: "source-map-loader" }
     ]
   },
   resolve: {

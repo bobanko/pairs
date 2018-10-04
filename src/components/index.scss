@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Baloo+Bhaina");
 
-@import "../components/timer/timer.scss";
-
 html {
   font-size: 70px;
 }
@@ -18,4 +16,10 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.game-state {
+  text-align: center;
+  font-family: "Baloo Bhaina", cursive;
+  line-height: 1em;
 }
