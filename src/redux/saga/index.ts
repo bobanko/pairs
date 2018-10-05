@@ -15,7 +15,8 @@ import {
   timerStop,
   timerStart,
   startGame,
-  setLevel
+  setLevel,
+  endGame
 } from "../actions";
 import {
   getItemById,
@@ -117,6 +118,7 @@ function* gameLoopSaga() {
 
 export function* rootSaga() {
   yield gameLoopSaga();
+  yield put(endGame());
   console.log("end root");
 }
 

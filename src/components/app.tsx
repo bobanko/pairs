@@ -27,25 +27,32 @@ class App extends React.Component<Props> {
           {gameState === GameState.PLAY && `⏱️${this.props.timer}`}
           {gameState === GameState.WIN && "👑you won✊"}
           {gameState === GameState.FAIL && "💀you failed😰"}
+
+          {gameState === GameState.END && [
+            <div>you are</div>,
+            <div>👑the king👑</div>,
+            <div>of pairs</div>
+          ]}
         </div>
 
         <Field items={this.props.items} />
-        {gameState !== GameState.PLAY && (
-          <div className="play-button" onClick={() => this.props.startGame()}>
-            {gameState === GameState.WIN && [
-              <span>Next level</span>,
-              <i className="material-icons">arrow_forward_ios</i>
-            ]}
-            {gameState === GameState.FAIL && [
-              <i className="material-icons">replay</i>,
-              <span>Re-play</span>
-            ]}
-            {gameState === GameState.INITIAL && [
-              <span>Play</span>,
-              <i className="material-icons">play_circle_outline</i>
-            ]}
-          </div>
-        )}
+        {gameState !== GameState.PLAY &&
+          gameState !== GameState.END && (
+            <div className="play-button" onClick={() => this.props.startGame()}>
+              {gameState === GameState.WIN && [
+                <span>Next level</span>,
+                <i className="material-icons">arrow_forward_ios</i>
+              ]}
+              {gameState === GameState.FAIL && [
+                <i className="material-icons">replay</i>,
+                <span>Re-play</span>
+              ]}
+              {gameState === GameState.INITIAL && [
+                <span>Play</span>,
+                <i className="material-icons">play_circle_outline</i>
+              ]}
+            </div>
+          )}
       </>
     );
   }
