@@ -26,7 +26,7 @@ class App extends React.Component<Props> {
         <div className="game-state">
           {gameState === GameState.PLAY && `⏱️${this.props.timer}`}
           {gameState === GameState.WIN && "👑you won✊"}
-          {gameState === GameState.FAIL && "you failed 😰"}
+          {gameState === GameState.FAIL && "💀you failed😰"}
         </div>
 
         <Field items={this.props.items} />
