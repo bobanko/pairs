@@ -30,15 +30,15 @@ function* takeTwoSaga() {
 
   //pair count
   const itemsCount = yield select<State>(getItemsCount);
-  let hiddenItemsCount;
+
   do {
-    let action1 = yield take(FLIP_CELL);
-    let item1: Item = yield select<State>(getItemById(action1.id));
+    let flip1 = yield take(FLIP_CELL);
+    let item1: Item = yield select<State>(getItemById(flip1.id));
     console.log("first", item1);
     yield put(openCell(item1.id));
 
-    let action2 = yield take(FLIP_CELL);
-    let item2 = yield select(getItemById(action2.id));
+    let flip2 = yield take(FLIP_CELL);
+    let item2 = yield select(getItemById(flip2.id));
     console.log("second", item2);
     const timeout = 500; //ms
 
@@ -59,11 +59,8 @@ function* takeTwoSaga() {
       yield call(delay, timeout);
       yield put(closeCell(item1.id));
       yield put(closeCell(item2.id));
-      //console.log("flip both done?");
     }
-    hiddenItemsCount = yield select<State>(getHiddenItemsCount);
-    console.log(hiddenItemsCount);
-  } while (hiddenItemsCount < itemsCount);
+  } while ((yield select<State>(getHiddenItemsCount)) < itemsCount);
 
   return yield select<State>(getScore);
 }
@@ -110,12 +107,11 @@ function* gameLoopSaga() {
 
   for (
     let level = 1, isWin = false;
-    level < 10;
+    level <= 10;
     level = isWin ? level + 1 : level
   ) {
-    isWin = yield playLevelSaga(level);
-
     yield take(START_GAME);
+    isWin = yield playLevelSaga(level);
   }
 }
 
