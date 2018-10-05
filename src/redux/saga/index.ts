@@ -1,8 +1,9 @@
-import { take, put, call, race, all, fork, select } from "redux-saga/effects";
-import { takeEvery, delay } from "redux-saga";
+import { delay } from "redux-saga";
+import { take, put, call, race, select } from "redux-saga/effects";
 
 import {
   FLIP_CELL,
+  START_GAME,
   hideCell,
   openCell,
   closeCell,
@@ -13,7 +14,8 @@ import {
   timerTick,
   timerStop,
   timerStart,
-  startGame
+  startGame,
+  setLevel
 } from "../actions";
 import {
   getItemById,
@@ -81,37 +83,40 @@ function* timerSaga(timeout: number) {
 
 function* playLevelSaga(level: number) {
   console.log(`level ${level} started`);
-  const itemPairCount = level;
+  const itemPairCount = level; //pair count based on level num
   let newItems = generateItems(itemPairCount);
   yield put(setItems(newItems));
+  yield put(setLevel(level));
   yield put(startGame());
 
-  let finished = false;
-  while (!finished) {
-    // has to finish in 60 seconds
-    const { score, timeout } = yield race({
-      score: call(takeTwoSaga),
-      timeout: call(timerSaga, itemPairCount * 5) //todo: somehow call tick
-    });
+  // has to finish in 60 seconds
+  const { score, timeout } = yield race({
+    score: call(takeTwoSaga),
+    timeout: call(timerSaga, itemPairCount * 5)
+  });
 
-    if (!timeout) {
-      finished = true;
-      console.log("win", score);
-      yield put(winGame());
-    } else {
-      finished = true;
-      console.log("fail", score);
-      yield put(failGame());
-    }
+  let isVictory = !timeout;
+
+  if (isVictory) {
+    yield put(winGame(score));
+  } else {
+    yield put(failGame(score));
   }
   console.log(`level ${level} finished`);
+  return isVictory;
 }
 
 function* gameLoopSaga() {
   console.log("game started");
 
-  for (let level = 1; level < 10; level++) {
-    yield playLevelSaga(level);
+  for (
+    let level = 1, isWin = false;
+    level < 10;
+    level = isWin ? level + 1 : level
+  ) {
+    isWin = yield playLevelSaga(level);
+
+    yield take(START_GAME);
   }
 }
 

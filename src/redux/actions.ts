@@ -10,6 +10,7 @@ export const WIN = "WIN";
 export const FAIL = "FAIL";
 
 export const SET_SCORE = "SET_SCORE";
+export const SET_LEVEL = "SET_LEVEL";
 
 export const TIMER_START = "TIMER_START";
 export const TIMER_TICK = "TIMER_TICK";
@@ -73,10 +74,17 @@ export const startGame = () => ({
   type: START_GAME
 });
 
-export const winGame = () => ({
-  type: WIN
+export const setLevel = (value: number) => ({
+  type: SET_LEVEL,
+  value
 });
 
-export const failGame = () => ({
-  type: FAIL
+export const winGame = (score: number = 0) => ({
+  type: WIN,
+  score
+});
+
+export const failGame = (score: number = 0) => ({
+  type: FAIL,
+  score
 });

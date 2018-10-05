@@ -1,16 +1,16 @@
 @import url("https://fonts.googleapis.com/css?family=Baloo+Bhaina");
-
-html {
-  font-size: 70px;
-}
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 
 html,
 body {
   height: 100%;
   background-color: lightgray;
+  font-size: 70px;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
+  position: relative;
   margin: 0;
   display: flex;
   align-items: center;
@@ -18,8 +18,51 @@ body {
   flex-direction: column;
 }
 
+#root {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 .game-state {
   text-align: center;
-  font-family: "Baloo Bhaina", cursive;
-  line-height: 1em;
+  font-size: 0.7em;
+  font-weight: bold;
+}
+
+.level {
+  font-size: 0.5em;
+  opacity: 0.4;
+  font-weight: bold;
+}
+
+.play-button {
+  --color: #6200ee;
+  position: relative;
+  text-align: center;
+  font-size: 0.5em;
+  padding: 16px 32px;
+  text-transform: uppercase;
+  color: var(--color);
+  box-shadow: 0 0 0 2px #0000001e;
+  border-radius: 8px;
+
+  &:hover:after,
+  &:active:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color);
+    border-radius: 8px;
+  }
+
+  &:hover:after {
+    opacity: 0.1;
+  }
+  &:active:after {
+    opacity: 0.2;
+  }
 }
