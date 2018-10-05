@@ -61,6 +61,7 @@ module.exports = {
       { enforce: "pre", test: /\.tsx?$/, loader: "source-map-loader" }
     ]
   },
+  devtool: "source-map",
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
   },
