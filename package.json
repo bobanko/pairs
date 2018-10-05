@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "set NODE_ENV=dev && webpack-dev-server",
-    "build": "set NODE_ENV=prod && webpack --mode production",
+    "build": "set NODE_ENV=prod && webpack --mode production && git add . && git commit -m build",
     "server": "webpack-dev-server --hot"
   },
   "devDependencies": {
