@@ -44,7 +44,6 @@ function* takeTwoSaga() {
 
     if (item1.id === item2.id) {
       console.log("same card");
-      yield call(delay, timeout);
       yield put(closeCell(item2.id));
     } else if (item1.imageId === item2.imageId) {
       yield put(openCell(item2.id));
