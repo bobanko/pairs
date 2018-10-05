@@ -32,7 +32,18 @@ class App extends React.Component<Props> {
         <Field items={this.props.items} />
         {gameState !== GameState.PLAY && (
           <div className="play-button" onClick={() => this.props.startGame()}>
-            Start
+            {gameState === GameState.WIN && [
+              <span>Next level</span>,
+              <i className="material-icons">arrow_forward_ios</i>
+            ]}
+            {gameState === GameState.FAIL && [
+              <i className="material-icons">replay</i>,
+              <span>Re-play</span>
+            ]}
+            {gameState === GameState.INITIAL && [
+              <span>Play</span>,
+              <i className="material-icons">play_circle_outline</i>
+            ]}
           </div>
         )}
       </>

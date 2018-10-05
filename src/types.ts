@@ -6,9 +6,11 @@ export type Item = {
 };
 
 export enum GameState {
+  "INITIAL",
   "WIN",
   "FAIL",
-  "PLAY"
+  "PLAY",
+  "END"
 }
 
 export type State = {

@@ -43,19 +43,19 @@ function* takeTwoSaga() {
     const timeout = 500; //ms
 
     if (item1.id === item2.id) {
-      console.log("same card");
+      //same card
       yield put(closeCell(item2.id));
     } else if (item1.imageId === item2.imageId) {
+      //pair found
       yield put(openCell(item2.id));
-      console.log("pair found");
       yield call(delay, timeout);
       yield put(hideCell(item1.id));
       yield put(hideCell(item2.id));
 
       yield put(setScore((yield select<State>(getScore)) + 1));
     } else {
+      //diff
       yield put(openCell(item2.id));
-      console.log("diff");
       yield call(delay, timeout);
       yield put(closeCell(item1.id));
       yield put(closeCell(item2.id));
@@ -77,18 +77,18 @@ function* timerSaga(timeout: number) {
   return true;
 }
 
+const getLevelTimeout = value => value * 5;
+
 function* playLevelSaga(level: number) {
-  console.log(`level ${level} started`);
   const itemPairCount = level; //pair count based on level num
   let newItems = generateItems(itemPairCount);
   yield put(setItems(newItems));
   yield put(setLevel(level));
   yield put(startGame());
 
-  // has to finish in 60 seconds
   const { score, timeout } = yield race({
     score: call(takeTwoSaga),
-    timeout: call(timerSaga, itemPairCount * 5)
+    timeout: call(timerSaga, getLevelTimeout(itemPairCount))
   });
 
   let isVictory = !timeout;
