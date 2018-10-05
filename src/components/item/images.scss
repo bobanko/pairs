@@ -13,13 +13,13 @@ $faceImgUrls: "images/e10c30fde767f8e6b9778f29c7020daa.png",
   "images/1cb072ac3a48b73ef3a9e69fb244b976.png",
   "images/9f29a5083a17ae471ee255d495ad836f.png";
 
-.field .item .item-back:before {
+.field .item .item-back:after {
   background-image: url(#{$cardBackImageUrl});
 }
 
 @each $img in $faceImgUrls {
   $i: index($faceImgUrls, $img);
-  .field .item[data-id="#{$i}"]:before {
+  .field .item[data-id="#{$i}"]:after {
     background-image: url($img);
   }
 }

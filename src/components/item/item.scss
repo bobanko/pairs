@@ -31,21 +31,21 @@
     backface-visibility: hidden;
   }
   &:before {
-    transform: rotateY(-180deg);
-    background-color: black;
-  }
-  &:after {
     background-color: #bbbbbb;
     background-image: url($cardBackImageUrl);
   }
+  &:after {
+    transform: rotateY(-180deg);
+    background-color: black;
+  }
   &.is-open {
     &:before {
-      transform: rotateY(0deg);
-      background-color: #fff;
-    }
-    &:after {
       transform: rotateY(180deg);
       background-color: black;
+    }
+    &:after {
+      transform: rotateY(0deg);
+      background-color: #fff;
     }
   }
 
@@ -62,5 +62,15 @@
   100% {
     transform: rotateX(90deg);
     opacity: 0;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(-10deg);
+  }
+
+  100% {
+    transform: rotateZ(10deg);
   }
 }
