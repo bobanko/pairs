@@ -67,7 +67,7 @@ function* takeTwoSaga() {
   return yield select<State>(getScore);
 }
 
-function* timerSaga(timeout) {
+function* timerSaga(timeout: number) {
   yield put(timerStart(timeout));
 
   for (let timeLeft = timeout; timeLeft > 0; timeLeft--) {
@@ -79,13 +79,13 @@ function* timerSaga(timeout) {
   return true;
 }
 
-function* gameLoopSaga() {
-  console.log("game started");
-  const itemPairCount = 10; //todo: increase?
+function* playLevelSaga(level: number) {
+  console.log(`level ${level} started`);
+  const itemPairCount = level;
   let newItems = generateItems(itemPairCount);
-
   yield put(setItems(newItems));
   yield put(startGame());
+
   let finished = false;
   while (!finished) {
     // has to finish in 60 seconds
@@ -103,6 +103,15 @@ function* gameLoopSaga() {
       console.log("fail", score);
       yield put(failGame());
     }
+  }
+  console.log(`level ${level} finished`);
+}
+
+function* gameLoopSaga() {
+  console.log("game started");
+
+  for (let level = 1; level < 10; level++) {
+    yield playLevelSaga(level);
   }
 }
 
