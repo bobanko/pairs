@@ -24,7 +24,7 @@ class App extends React.Component<Props> {
       <>
         <div className="level">level {this.props.level}</div>
         <div className="game-state">
-          {gameState === GameState.PLAY && `⏱${this.props.timer}`}
+          {gameState === GameState.PLAY && `⏱️${this.props.timer}`}
           {gameState === GameState.WIN && "👑you won✊"}
           {gameState === GameState.FAIL && "you failed 😰"}
         </div>
